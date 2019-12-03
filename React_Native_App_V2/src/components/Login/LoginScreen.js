@@ -31,7 +31,7 @@ class LoginScreen extends Component {
     }
 
     handleLoginPress = () => {
-        this.setState({ value: this.state.email + "n/" + this.state.password })
+        this.setState({ value: this.state.email + " | " + this.state.password })
     }
 
     render() {
@@ -54,7 +54,7 @@ class LoginScreen extends Component {
                         />
                         <Text style={styles.loginHeader}>{this.state.value}</Text>
                     </ScrollView>
-                    
+
                 </View>
                 <LoginButton handleLoginPress={this.handleLoginPress} />
             </KeyboardAvoidingView>
