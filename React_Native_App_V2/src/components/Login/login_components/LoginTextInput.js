@@ -17,7 +17,8 @@ class LoginTextInput extends Component {
     render() {
         const {
             labelText,
-            inputType } = this.props;
+            inputType,
+            onChangeText } = this.props;
 
         return (
             <View style={styles.wrapper}>
@@ -33,6 +34,7 @@ class LoginTextInput extends Component {
                     </TouchableOpacity>
                 ) : null}
                 <TextInput
+                    onChangeText={onChangeText}
                     style={styles.inputField}
                     autoCorrect={false}
                     secureTextEntry={this.state.secureInput}
@@ -65,7 +67,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderTopWidth: 0,
         borderRightWidth: 0,
-        borderLeftWidth: 0
+        borderLeftWidth: 0,
+        color: "white"
     },
     showButton: {
         position: "absolute",

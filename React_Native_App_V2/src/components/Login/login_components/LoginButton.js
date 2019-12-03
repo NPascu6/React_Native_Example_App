@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 
-LoginButton.propTypes ={
-    disabled: PropTypes.bool,
-    handleLoginPress: PropTypes.func
-};
-
 class LoginButton extends Component {
     constructor(props) {
         super(props);
@@ -17,7 +12,7 @@ class LoginButton extends Component {
     render() {
         return (
             <TouchableOpacity style={styles.buttonStyle}>
-                <Text style={styles.textStyle}>{this.state.label}</Text>
+                <Text style={styles.textStyle} onPress={this.props.handleLoginPress}>{this.state.label}</Text>
             </TouchableOpacity>
         )
     }

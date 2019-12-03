@@ -31,7 +31,7 @@ class LoginScreen extends Component {
     }
 
     handleLoginPress = () => {
-        this.setState({ value: "Button Pressed" })
+        this.setState({ value: this.state.email + "n/" + this.state.password })
     }
 
     render() {
@@ -44,15 +44,19 @@ class LoginScreen extends Component {
                             labelText="Email"
                             labelTextSize={14}
                             inputType="email"
+                            onChangeText={this.handleEmailChange}
                         />
                         <LoginTextInput
                             labelText="Password"
                             labelTextSize={14}
                             inputType="password"
+                            onChangeText={this.handlePasswordChange}
                         />
+                        <Text style={styles.loginHeader}>{this.state.value}</Text>
                     </ScrollView>
+                    
                 </View>
-                <LoginButton />
+                <LoginButton handleLoginPress={this.handleLoginPress} />
             </KeyboardAvoidingView>
         )
     }
@@ -62,7 +66,7 @@ const styles = StyleSheet.create({
     wrapper: {
         display: "flex",
         flex: 1,
-        backgroundColor: "#4c4cff"
+        backgroundColor: "#262626"
     },
     scrollViewWrapper: {
         marginTop: 20,
