@@ -22,16 +22,17 @@ const styles = StyleSheet.create({
     buttonStyle: {
         alignSelf:"flex-end",
         borderColor: "white",
-        borderWidth: 2,
+        borderWidth: 1,
         width: 60,
         margin: 2,
-        borderRadius: 8,
-        justifyContent: "center"
     },
     textStyle: {
         fontWeight:"bold",
         color: "white",
-        padding: 2
+        padding: 2,
+        textAlign: 'center',
+        alignContent: 'center',
+        fontSize: 20
     }
 });
 
