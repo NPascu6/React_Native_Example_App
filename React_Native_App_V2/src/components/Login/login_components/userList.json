@@ -1,12 +1,12 @@
 {
     "users": [
         {
-            "UserName": "Test Admin",
+            "UserName": "Admin",
             "Password": "Password",
             "Role": "Admin"
         },
         {
-            "UserName": "Test User",
+            "UserName": "User",
             "Password": "Password",
             "Role": "User"
         }

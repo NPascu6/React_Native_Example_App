@@ -10,19 +10,15 @@ import LogoutButton from '../Shared_Components/LogoutButton';
 mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
-class DetailsScreen extends Component {
+class AdminScreen extends Component {
     render() {
         return (
             <View>
-                <LogoutButton  navigation={this.props.navigation}/>
-                {
-                    this.props.user.role === "Admin" ? 
-                    <Text onPress={()=> this.props.navigation.navigate("Admin")}>Admin logged in</Text> :
-                    <Text onPress={()=> this.props.navigation.navigate("User")}>User logged in</Text>
-                }
+                <LogoutButton navigation={this.props.navigation}/>
+                <Text>Admin Screen</Text>
             </View>
         )
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(DetailsScreen);
+export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen);
