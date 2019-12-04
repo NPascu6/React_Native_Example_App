@@ -17,6 +17,7 @@ class LogoutButton extends Component {
     }
 
     logout = () => {
+        debugger;
         this.props.logout();
         this.props.navigation.navigate("Login");
     }
