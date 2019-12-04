@@ -2,19 +2,18 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    KeyboardAvoidingView,
     ScrollView,
     StyleSheet
 } from 'react-native';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import * as ActionCreators from '../../actions/loginAction'
+import * as ActionCreators from '../../actions/authentificationActions'
 
 import LoginButton from './login_components/loginButton';
 import LoginTextInput from './login_components/loginTextInput';
 
-mapStateToProps = (state) => { return { user: state.loginReducer.user }; }
+mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 class LoginScreen extends Component {
@@ -25,11 +24,6 @@ class LoginScreen extends Component {
             password: "",
             title: "Login Component",
         }
-    }
-
-    componentDidUpdate(){
-        debugger;
-        this.props.user.loggedIn = false;
     }
 
     handleEmailChange = (email) => {
@@ -47,17 +41,15 @@ class LoginScreen extends Component {
                 userName: this.state.email,
                 password: this.state.password
             });
-            
         }
-        this.props.navigation.navigate('Details')
-        debugger;
+        if(this.props.user.loggedIn === true){
+            this.props.navigation.navigate('Details')
+        }
     }
 
     render() {
         return (
             <View style={styles.wrapper}>
-                <KeyboardAvoidingView behavior="padding">
-                    <View>
                         <ScrollView style={styles.scrollView}>
                             <Text style={styles.loginHeader}>{this.state.title}</Text>
                             <LoginTextInput
@@ -73,8 +65,6 @@ class LoginScreen extends Component {
                                 onChangeText={this.handlePasswordChange}
                             />
                         </ScrollView>
-                    </View>
-                </KeyboardAvoidingView>
                 <LoginButton handleLogin={this.handleLogin} />
             </View>
         )
