@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text } from 'react-native';
+//Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../actions/authentificationActions'
+//Components
+import LogoutButton from '../Shared_Components/LogoutButton';
 
 mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
@@ -21,10 +24,14 @@ class DetailsScreen extends Component {
 
     render() {
         return (
+
             <View>
-                <Text>Details Screen
-                    </Text>
-                <Button onPress={this.logout} title="Log Out" />
+                <LogoutButton logout={this.logout} />
+                {
+                    this.props.user.role === "Admin" ? 
+                    <Text>Admin logged in</Text> :
+                    <Text>User logged in</Text>
+                }
             </View>
         )
     }

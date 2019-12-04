@@ -1,5 +1,5 @@
-import DetailsScreen from '../Details/detailsScreen';
-import LoginScreen from '../Login/loginScreen';
+import DetailsScreen from '../Details/DetailsScreen';
+import LoginScreen from '../Login/LoginScreen';
 
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';

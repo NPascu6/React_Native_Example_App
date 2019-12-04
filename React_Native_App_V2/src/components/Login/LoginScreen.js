@@ -6,12 +6,13 @@ import {
     StyleSheet
 } from 'react-native';
 
+//Redux
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
 import * as ActionCreators from '../../actions/authentificationActions'
-
-import LoginButton from './login_components/loginButton';
-import LoginTextInput from './login_components/loginTextInput';
+//Components
+import LoginButton from './login_components/LoginButton';
+import LoginTextInput from './login_components/LoginTextInput';
 
 mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
