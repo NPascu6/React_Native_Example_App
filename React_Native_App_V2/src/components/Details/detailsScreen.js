@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-
+import { View, Text } from 'react-native';
 
 class DetailsScreen extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
+        debugger;
     }
 
-    render(){
-        return(
+    render() {
+
+        return (
             <View>
                 <Text>Details Screen</Text>
             </View>

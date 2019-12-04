@@ -9,12 +9,12 @@ import {
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux'
-import * as ActionCreators  from '../../actions/loginAction'
+import * as ActionCreators from '../../actions/loginAction'
 
 import LoginButton from './login_components/loginButton';
 import LoginTextInput from './login_components/loginTextInput';
 
-mapStateToProps = (state) => { return { user: state.loginReducers.user}; }
+mapStateToProps = (state) => { return { user: state.loginReducer.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 class LoginScreen extends Component {
@@ -23,9 +23,13 @@ class LoginScreen extends Component {
         this.state = {
             email: "",
             password: "",
-            value: "test1",
-            title: "Login Component"
+            title: "Login Component",
         }
+    }
+
+    componentDidUpdate(){
+        debugger;
+        this.props.user.loggedIn = false;
     }
 
     handleEmailChange = (email) => {
@@ -36,40 +40,43 @@ class LoginScreen extends Component {
         this.setState({ password: password });
     }
 
-    handleLogin = () =>{
+    handleLogin = () => {
         debugger;
-        this.props.login({
-            userName: 'test',
-            password: 'test1234'
-        })
+        if (this.props.user.loggedIn === false) {
+            this.props.login({
+                userName: this.state.email,
+                password: this.state.password
+            });
+            
+        }
+        this.props.navigation.navigate('Details')
+        debugger;
     }
 
     render() {
         return (
-            <KeyboardAvoidingView style={styles.wrapper} behavior="padding">
-                <View style={styles.scrollViewWrapper}>
-                    <ScrollView style={styles.scrollView}>
-                        <Text style={styles.loginHeader}>{this.state.title}</Text>
-                        <LoginTextInput
-                            labelText="Email"
-                            labelTextSize={14}
-                            inputType="email"
-                            onChangeText={this.handleEmailChange}
-                        />
-                        <LoginTextInput
-                            labelText="Password"
-                            labelTextSize={14}
-                            inputType="password"
-                            onChangeText={this.handlePasswordChange}
-                        />
-                        <Text style={styles.loginHeader}>{this.state.value}</Text>
-                    </ScrollView>
-                </View>
+            <View style={styles.wrapper}>
+                <KeyboardAvoidingView behavior="padding">
+                    <View>
+                        <ScrollView style={styles.scrollView}>
+                            <Text style={styles.loginHeader}>{this.state.title}</Text>
+                            <LoginTextInput
+                                labelText="Email"
+                                labelTextSize={14}
+                                inputType="email"
+                                onChangeText={this.handleEmailChange}
+                            />
+                            <LoginTextInput
+                                labelText="Password"
+                                labelTextSize={14}
+                                inputType="password"
+                                onChangeText={this.handlePasswordChange}
+                            />
+                        </ScrollView>
+                    </View>
+                </KeyboardAvoidingView>
                 <LoginButton handleLogin={this.handleLogin} />
-                {
-                    !this.props.user.loggedIn && <Text>Test Text</Text>
-                }
-            </KeyboardAvoidingView>
+            </View>
         )
     }
 }

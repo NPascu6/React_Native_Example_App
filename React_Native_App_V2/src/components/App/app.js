@@ -1,14 +1,27 @@
 import React from 'react';
-import LoginScreen from '../Login/loginScreen';
+
 import { Provider } from 'react-redux';
 import { createStore, combineReducers } from 'redux';
-import loginReducers from '../../reducers/loginReducer'
+import loginReducer from '../../reducers/loginReducer'
 
-let store = createStore(combineReducers({loginReducers}))
+import DetailsScreen from '../Details/detailsScreen';
+import LoginScreen from '../Login/loginScreen';
+
+import { createAppContainer } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation-stack';
+
+let store = createStore(combineReducers({ loginReducer }))
+
+let MainNavigator = createStackNavigator({
+  Login: { screen: LoginScreen },
+  Details: { screen: DetailsScreen }
+});
+
+let Navigation = createAppContainer(MainNavigator);
 
 const MyApp = () => (
-  <Provider store ={store}>
-    <LoginScreen />
+  <Provider store={store}>
+    <Navigation />
   </Provider>
 )
 
