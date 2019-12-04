@@ -12,7 +12,7 @@ class LoginButton extends Component {
     render() {
         return (
             <TouchableOpacity style={styles.buttonStyle}>
-                <Text style={styles.textStyle} onPress={this.props.handleLoginPress}>{this.state.label}</Text>
+                <Text style={styles.textStyle} onPress={this.props.handleLogin}>{this.state.label}</Text>
             </TouchableOpacity>
         )
     }

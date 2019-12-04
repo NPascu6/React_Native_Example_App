@@ -7,9 +7,15 @@ import {
     StyleSheet
 } from 'react-native';
 
-import LoginButton from './login_components/LoginButton';
-import LoginTextInput from './login_components/LoginTextInput';
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux'
+import * as ActionCreators  from '../../actions/loginAction'
 
+import LoginButton from './login_components/loginButton';
+import LoginTextInput from './login_components/loginTextInput';
+
+mapStateToProps = (state) => { return { user: state.loginReducers.user}; }
+mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 class LoginScreen extends Component {
     constructor(props) {
@@ -17,7 +23,7 @@ class LoginScreen extends Component {
         this.state = {
             email: "",
             password: "",
-            value: "test",
+            value: "test1",
             title: "Login Component"
         }
     }
@@ -30,8 +36,12 @@ class LoginScreen extends Component {
         this.setState({ password: password });
     }
 
-    handleLoginPress = () => {
-        this.setState({ value: this.state.email + " | " + this.state.password })
+    handleLogin = () =>{
+        debugger;
+        this.props.login({
+            userName: 'test',
+            password: 'test1234'
+        })
     }
 
     render() {
@@ -54,9 +64,11 @@ class LoginScreen extends Component {
                         />
                         <Text style={styles.loginHeader}>{this.state.value}</Text>
                     </ScrollView>
-
                 </View>
-                <LoginButton handleLoginPress={this.handleLoginPress} />
+                <LoginButton handleLogin={this.handleLogin} />
+                {
+                    !this.props.user.loggedIn && <Text>Test Text</Text>
+                }
             </KeyboardAvoidingView>
         )
     }
@@ -87,4 +99,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default LoginScreen;
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
