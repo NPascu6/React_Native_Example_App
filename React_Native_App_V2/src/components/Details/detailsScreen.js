@@ -14,13 +14,12 @@ class DetailsScreen extends Component {
     }
 
     logout = () => {
+        debugger;
         this.props.logout();
-        this.props.navigation.navigate("Login")
+        this.props.navigation.navigate("Login");
     }
 
     render() {
-        debugger;
-
         return (
             <View>
                 <Text>Details Screen

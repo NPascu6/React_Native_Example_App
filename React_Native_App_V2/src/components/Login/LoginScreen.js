@@ -23,7 +23,12 @@ class LoginScreen extends Component {
             email: "",
             password: "",
             title: "Login Component",
+            errorMessage: ""
         }
+    }
+
+    componentDidMount(){
+        debugger;
     }
 
     handleEmailChange = (email) => {
@@ -42,31 +47,31 @@ class LoginScreen extends Component {
                 password: this.state.password
             });
         }
-        if(this.props.user.loggedIn === true){
-            this.props.navigation.navigate('Details')
-        }
+        this.props.user.loggedIn === true ? this.props.navigation.navigate('Details') : null;
+        this.setState({ errorMessage: this.props.user.errorMessage });
     }
 
     render() {
         return (
             <View style={styles.wrapper}>
-                        <ScrollView style={styles.scrollView}>
-                            <Text style={styles.loginHeader}>{this.state.title}</Text>
-                            <LoginTextInput
-                                labelText="Email"
-                                labelTextSize={14}
-                                inputType="email"
-                                onChangeText={this.handleEmailChange}
-                            />
-                            <LoginTextInput
-                                labelText="Password"
-                                labelTextSize={14}
-                                inputType="password"
-                                onChangeText={this.handlePasswordChange}
-                            />
-                        </ScrollView>
+                <ScrollView style={styles.scrollView}>
+                    <Text style={styles.loginHeader}>{this.state.title}</Text>
+                    <LoginTextInput
+                        labelText="Email"
+                        labelTextSize={14}
+                        inputType="email"
+                        onChangeText={this.handleEmailChange}
+                    />
+                    <LoginTextInput
+                        labelText="Password"
+                        labelTextSize={14}
+                        inputType="password"
+                        onChangeText={this.handlePasswordChange}
+                    />
+                </ScrollView>
+                <Text style={styles.loginHeader}>{this.state.errorMessage}</Text>
                 <LoginButton handleLogin={this.handleLogin} />
-            </View>
+            </View >
         )
     }
 }
