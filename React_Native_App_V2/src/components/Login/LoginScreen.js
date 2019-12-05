@@ -22,7 +22,8 @@ class LoginScreen extends Component {
             email: "",
             password: "",
             title: "Login Component",
-            errorMessage: ""
+            errorMessage: "",
+            currentUser: {}
         }
     }
 
@@ -34,6 +35,10 @@ class LoginScreen extends Component {
         this.setState({ password: password });
     }
 
+    componentDidMount(){
+        this.setState({currentUser: this.props.currentUser})
+    }
+
     handleLogin = () => {
         debugger;
         if (this.props.user.loggedIn === false) {
@@ -43,6 +48,8 @@ class LoginScreen extends Component {
             });
         }
         this.props.user.loggedIn === true ? this.props.navigation.navigate('Details') : null;
+        debugger;
+        this.setState({currentUser: this.props.user.currentUser});
         this.setState({ errorMessage: this.props.user.errorMessage });
     }
 

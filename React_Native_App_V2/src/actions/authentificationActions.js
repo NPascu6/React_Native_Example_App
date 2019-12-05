@@ -19,20 +19,23 @@ const URL = `${API_URL}/login`;
 */
 
 export function login(userCredentials) {
-
+debugger;
     for (let user of userList) {
-        if (userCredentials.userName === user.UserName
+        if (userCredentials.userName === user.userName
             && userCredentials.password === user.Password
             && user.Role === "Admin") {
+                debugger;
             return {
-                type: LOGIN_SUCCESS_ADMIN
+                type: LOGIN_SUCCESS_ADMIN,
+                payload: user
             }
         }
-        else if (userCredentials.userName === user.UserName
+        else if (userCredentials.userName === user.userName
             && userCredentials.password === user.Password
             && user.Role === "User") {
             return {
-                type: LOGIN_SUCCESS_USER
+                type: LOGIN_SUCCESS_USER,
+                payload: user
             }
         }
     };

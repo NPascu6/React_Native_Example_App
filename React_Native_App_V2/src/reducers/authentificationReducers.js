@@ -4,24 +4,29 @@ let newState = {
     user: { 
         loggedIn: false, 
         errorMessage: '', 
-        role: '' 
+        role: '' ,
+        currentUser: {}
     } 
 };
 
-export default (state, action) => {
+export default (state, action, payload) => {
     debugger;
     switch (action.type) {
         case LOGIN_SUCCESS_ADMIN:
             newState.user.loggedIn = true;
             newState.user.role = "Admin";
             newState.user.errorMessage = "";
+            newState.user.currentUser = action.payload;
 
             return newState;
 
         case LOGIN_SUCCESS_USER:
+            debugger;
+            var x = payload;
             newState.user.loggedIn = true;
             newState.user.role = "User";
             newState.user.errorMessage = "";
+            newState.user.currentUser = action.payload;
 
             return newState;
 

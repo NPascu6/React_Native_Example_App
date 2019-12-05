@@ -6,6 +6,7 @@ import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../actions/authentificationActions'
 //Components
 import LogoutButton from '../Shared_Components/LogoutButton';
+import CurrentUserProfile from '../User/CurrentUserProfile';
 
 mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
@@ -20,9 +21,11 @@ class DetailsScreen extends Component {
                     <Text onPress={()=> this.props.navigation.navigate("Admin")}>Admin logged in</Text> :
                     <Text onPress={()=> this.props.navigation.navigate("User")}>User logged in</Text>
                 }
+                <CurrentUserProfile currentUser={this.props.user.currentUser} />
             </View>
         )
     }
 }
+
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsScreen);

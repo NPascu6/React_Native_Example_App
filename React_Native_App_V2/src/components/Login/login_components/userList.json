@@ -1,14 +1,92 @@
 {
-    "users": [
+"users": [
         {
-            "UserName": "Admin",
-            "Password": "Password",
-            "Role": "Admin"
+            "userId": 1,
+            "userName": "admin",
+            "email": "admin@admin.test",
+            "FirstName": "Admin first",
+            "LastName": "Admin last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "Admin",
+            "Password": "Password"
         },
         {
-            "UserName": "User",
-            "Password": "Password",
-            "Role": "User"
+            "userId": 2,
+            "userName": "user1",
+            "email": "user1@user.test",
+            "FirstName": "User1 first",
+            "LastName": "User1 last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "User",
+            "Password": "Password"
+        },
+        {
+            "userId": 3,
+            "userName": "user2",
+            "email": "user2@user.test",
+            "FirstName": "User2 first",
+            "LastName": "User2 last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "User",
+            "Password": "Password"
+        },
+        {
+            "userId": 4,
+            "userName": "user3",
+            "email": "user3@user.test",
+            "FirstName": "User3 first",
+            "LastName": "User3 last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "Admin",
+            "Password": "Password"
+        },
+        {
+            "userId": 5,
+            "userName": "user4",
+            "email": "user4@user.test",
+            "FirstName": "User4 first",
+            "LastName": "User4 last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "User",
+            "Password": "Password"
+        },
+        {
+            "userId": 6,
+            "userName": "user5",
+            "email": "user5@user.test",
+            "FirstName": "User5 first",
+            "LastName": "User5 last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "User",
+            "Password": "Password"
+        },
+        {
+            "userId": 7,
+            "userName": "user6",
+            "email": "user6@user.test",
+            "FirstName": "User6 first",
+            "LastName": "User6 last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "Admin",
+            "Password": "Password"
+        },
+        {
+            "userId": 8,
+            "userName": "user7",
+            "email": "user7@user.test",
+            "FirstName": "User7 first",
+            "LastName": "User7 last",
+            "StartDate": "2017-10-03T00:00:00.000Z",
+            "EndDate": "2022-10-03T00:00:00.000Z",
+            "Role": "User",
+            "Password": "Password"
         }
     ]
 }
