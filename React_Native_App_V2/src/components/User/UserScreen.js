@@ -32,16 +32,13 @@ class UserScreen extends Component {
             headers: {
                 'Content-Type': 'application/json',
             },
-        }).then((response) => response.json())
-            .then((responseJson) => {
-                debugger;
+        }).then(
+            (response) =>
+                response.json()
+        ).done(
+            (responseJson) => {
                 this.setState({ users: responseJson.recordset })
             })
-            .catch((error) => {
-                console.error(error);
-            });
-
-        debugger;
     }
 
     componentDidMount() {

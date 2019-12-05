@@ -14,8 +14,6 @@ import * as ActionCreators from '../../actions/authentificationActions'
 import LoginButton from './login_components/LoginButton';
 import LoginTextInput from './login_components/LoginTextInput';
 
-mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 class LoginScreen extends Component {
     constructor(props) {
@@ -26,10 +24,6 @@ class LoginScreen extends Component {
             title: "Login Component",
             errorMessage: ""
         }
-    }
-
-    componentDidMount(){
-        debugger;
     }
 
     handleEmailChange = (email) => {
@@ -51,6 +45,33 @@ class LoginScreen extends Component {
         this.props.user.loggedIn === true ? this.props.navigation.navigate('Details') : null;
         this.setState({ errorMessage: this.props.user.errorMessage });
     }
+
+    /*handleLogin = () => {
+        const {gotResultsForLogin} = this.props;
+        try {
+            const response = await fetch(URL,
+                {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        data: userCredentials
+                    })
+                });
+
+            const result = await response.json();
+            // dispatch(getLoginResult(result));
+            gotResultsForLogin(result);
+        }
+        catch (err) {
+            console.log(err);
+            return {
+                type: LOGIN_ERROR,
+                payload: error
+            }
+        }
+    }*/
 
     render() {
         return (
@@ -101,5 +122,12 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     }
 });
+
+mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
+mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+
+/*mapDispatchToProps = (dispatch) => { return {
+    gotResultsForLogin: (result) => dispatch(getLoginResult(result))
+}}*/
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);
