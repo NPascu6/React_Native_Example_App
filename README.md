@@ -31,5 +31,9 @@ TYPE FOLLOWING COMMAND: git clone https://github.com/NPascu6/React_Native_App_V2
 RUN npm install
 RUN npm install -g react-native
 RUN npm install redux
+
+
+If you get weird regex error:
+--Copy contents of nodeFix into node_modules/metro-config/src/defaults/backlist.js and overwrite what is there allready :D
  
  # React_Native_App_V2
