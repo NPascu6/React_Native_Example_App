@@ -67,13 +67,13 @@ class UserScreen extends Component {
     render() {
         const users = this.state.users.map((item) => {
             return <View style={styles.view} key={item.userId}>
-                <Text style={styles.text}>item={item.userId}</Text>
-                <Text style={styles.text}>item={item.userName}</Text>
-                <Text style={styles.text}>item={item.email}</Text>
-                <Text style={styles.text}>item={item.FirstName}</Text>
-                <Text style={styles.text}>item={item.LastName}</Text>
-                <Text style={styles.text}>item={item.StartDate}</Text>
-                <Text style={styles.text}>item={item.EndDate}</Text>
+                <Text style={styles.text}>{item.userId}</Text>
+                <Text style={styles.text}>{item.userName}</Text>
+                <Text style={styles.text}>{item.email}</Text>
+                <Text style={styles.text}>{item.FirstName}</Text>
+                <Text style={styles.text}>{item.LastName}</Text>
+                <Text style={styles.text}>{item.StartDate}</Text>
+                <Text style={styles.text}>{item.EndDate}</Text>
             </View >
         });
 
@@ -84,11 +84,20 @@ class UserScreen extends Component {
                 <Text onPress={this.getAction1}>Action 1:{this.state.userState.action}</Text>
                 <Text onPress={this.getAction2}>Action 2:{this.state.userState.action}</Text>
                 <Text onPress={this.getAction3}>Action 3:{this.state.userState.action}</Text>
-                    <ScrollView style={styles.scrollView}>
-                        {
-                            users
-                        }
-                    </ScrollView>
+                <ScrollView style={styles.scrollView}>
+                    <View style={styles.view}>
+                        <Text style={styles.text}>user ID</Text>
+                        <Text style={styles.text}>User Name</Text>
+                        <Text style={styles.text}>First Name</Text>
+                        <Text style={styles.text}>Last Name</Text>
+                        <Text style={styles.text}>Email</Text>
+                        <Text style={styles.text}>Start Date</Text>
+                        <Text style={styles.text}>End Date</Text>
+                    </View >
+                    {
+                        users
+                    }
+                </ScrollView>
             </View>
         )
     }
@@ -102,12 +111,23 @@ const styles = StyleSheet.create({
     scrollView: {
         backgroundColor: 'gray',
         marginHorizontal: 2,
+        marginVertical: 2
     },
     text: {
-        flex: 1, alignSelf: 'stretch'
+        fontWeight: "bold",
+        color: "white",
+        textAlign: 'center',
+        alignContent: 'center',
+        fontSize: 14,
+        borderWidth: 0.5,
+        borderColor: 'white',
+        width: 58,
+        padding: 1
     },
-    view:{
-        flex: 1, alignSelf: 'stretch', flexDirection: 'row'
+    view: {
+        flex: 1,
+        alignSelf: 'stretch',
+        flexDirection: 'row',
     }
 });
 
