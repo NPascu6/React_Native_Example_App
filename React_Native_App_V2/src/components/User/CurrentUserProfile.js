@@ -7,71 +7,110 @@ class CurrentUserProfile extends Component {
         super(props);
 
         this.state = {
-            userId: '',
             userName: '',
             email: '',
             FirstName: '',
             LastName: '',
             StartDate: '',
-            EndDate: ''
         }
     }
 
     componentDidMount() {
         debugger;
         this.setState({
-            userId: this.props.currentUser.userId,
             userName: this.props.currentUser.userName,
             email: this.props.currentUser.email,
             FirstName: this.props.currentUser.FirstName,
             LastName: this.props.currentUser.LastName,
             StartDate: this.props.currentUser.StartDate,
-            EndDate: this.props.currentUser.EndDate
         });
     }
 
     render() {
         debugger;
 
-        return (<ScrollView style={styles.scrollView}><View style={styles.view} key={this.state.userId}>
-            <Text style={styles.text}>{this.state.userId}</Text>
-            <Text style={styles.text}>{this.state.userName}</Text>
-            <Text style={styles.text}>{this.state.email}</Text>
-            <Text style={styles.text}>{this.state.FirstName}</Text>
-            <Text style={styles.text}>{this.state.LastName}</Text>
-            <Text style={styles.text}>{this.state.StartDate}</Text>
-            <Text style={styles.text}>{this.state.EndDate}</Text>
-        </View ></ScrollView>
-            
+        return (
+            <ScrollView style={styles.scrollView}>
+                <View style={styles.view} key={this.state.userId}>
+                    <View style={styles.profileRow}>
+                        <Text style={styles.text}>
+                            User Name:
+                    </Text>
+                        <Text style={styles.textProfile}>
+                            {this.state.userName}
+                        </Text>
+                    </View>
+                    <View style={styles.profileRow}>
+                        <Text style={styles.text}>
+                            Email:
+                    </Text>
+                        <Text style={styles.textProfile}>
+                            {this.state.email}
+                        </Text>
+                    </View>
+                    <View style={styles.profileRow}>
+                        <Text style={styles.text}>
+                            First Name:
+                    </Text>
+                        <Text style={styles.textProfile}>
+                            {this.state.FirstName}
+                        </Text>
+                    </View>
+                    <View style={styles.profileRow}>
+                        <Text style={styles.text}>
+                            Last Name:
+                    </Text>
+                        <Text style={styles.textProfile}>
+                            {this.state.LastName}
+                        </Text>
+                    </View>
+                    <View style={styles.profileRow}>
+                        <Text style={styles.text}>
+                            Start Date:
+                    </Text>
+                        <Text style={styles.textProfile}>
+                            {this.state.StartDate ? this.state.StartDate.substr(0, this.state.StartDate.indexOf('T')) : null}
+                        </Text>
+                    </View>
+                </View >
+            </ScrollView>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 2,
-    },
     scrollView: {
-        backgroundColor: 'gray',
-        marginHorizontal: 2,
-        marginVertical: 2
+        backgroundColor: '#463d4a',
+        borderColor: "white",
+        borderWidth: 1,
+        borderRadius: 15,
+        padding: 10,
+        margin: 10,
+        alignSelf: 'center', 
     },
     text: {
         fontWeight: "bold",
         color: "white",
-        textAlign: 'center',
-        alignContent: 'center',
         fontSize: 14,
-        borderWidth: 0.5,
         borderColor: 'white',
-        width: 58,
         padding: 1
     },
+    textProfile: {
+        fontWeight: "bold",
+        color: "white",
+        fontSize: 14,
+        borderColor: 'white',
+        padding: 1,
+    },
     view: {
+        alignSelf: 'center',
+        width: 200,
+        justifyContent: 'flex-end',
+    },
+    profileRow: {
         flex: 1,
-        alignSelf: 'stretch',
-        flexDirection: 'row',
+        justifyContent: 'space-between',
+        flexDirection: 'row'
     }
 });
 
