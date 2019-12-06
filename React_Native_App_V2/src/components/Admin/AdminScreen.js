@@ -4,16 +4,30 @@ import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../actions/authentificationActions'
+
 //Components
 import LogoutButton from '../Shared_Components/LogoutButton';
+import AddUserComponent from '../Admin/admin_components/AddUserComponent'
 
 import { users as userList } from '../Login/login_components/userList.json';
 
-
-mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 class AdminScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            addUser: false
+        }
+    }
+
+    addUser = () => {
+        this.setState({ addUser: !this.state.addUser })
+    }
+
+
+
     render() {
         const users = userList.map((item) => {
             return <View style={styles.view} key={item.userId}>
@@ -29,9 +43,26 @@ class AdminScreen extends Component {
         return (
             <View>
                 <LogoutButton navigation={this.props.navigation} />
-                <ScrollView style={styles.scrollView}>{users}</ScrollView>
+                <View>
+                    {
+                        !this.state.addUser ?
+                            <Text
+                                onPress={this.addUser}>Add User
+                         </Text>
+                            :
+                            <View> 
+                                <Text
+                                    onPress={this.addUser}>Back To Admin
+                                    </Text>
+                                    <AddUserComponent userList={userList} />
+                            </View>
+                    }
+                </View>
+                {!this.state.addUser &&
+                    <ScrollView style={styles.scrollView}>{users}</ScrollView>}
             </View>
         )
+
     }
 }
 
@@ -45,11 +76,11 @@ const styles = StyleSheet.create({
         color: "white",
         fontSize: 12,
         padding: 3,
-        
+
     },
     view: {
         flex: 1,
-        justifyContent:'space-evenly',
+        justifyContent: 'space-evenly',
         borderWidth: 5,
         borderColor: 'white',
         borderRadius: 15,

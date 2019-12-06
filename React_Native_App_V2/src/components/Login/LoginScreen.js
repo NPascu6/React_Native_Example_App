@@ -109,8 +109,6 @@ const styles = StyleSheet.create({
         flex: 1,
         backgroundColor: "#262626",
     },
-    scrollViewWrapper: {
-    },
     loginHeader: {
         fontSize: 20,
         color: "white",
