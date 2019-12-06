@@ -20,7 +20,7 @@ class LoginScreen extends Component {
         this.state = {
             userName: "",
             password: "",
-            title: "Login",
+            title: "Norbi's Demo app",
             errorMessage: "",
             currentUser: {}
         }
@@ -97,7 +97,7 @@ class LoginScreen extends Component {
                         onChangeText={this.handlePasswordChange}
                     />
                 </ScrollView>
-                <Text style={styles.loginHeader}>{this.state.errorMessage}</Text>
+                <Text>{this.state.errorMessage}</Text>
                 <LoginButton handleLogin={this.handleLogin} />
             </View >
         )
@@ -106,26 +106,21 @@ class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
     wrapper: {
-        display: "flex",
         flex: 1,
         backgroundColor: "#262626",
     },
     scrollViewWrapper: {
-        marginTop: 20,
-        flex: 1
-    },
-    avoidView: {
-        paddingLeft: 30,
-        paddingRight: 30,
-        paddingTop: 20,
-        flex: 1
     },
     loginHeader: {
-        fontSize: 28,
+        fontSize: 20,
         color: "white",
         fontWeight: "300",
-        marginBottom: 40,
-        textAlign: 'center'
+        marginBottom: 0,
+        textAlign: 'center',
+        marginBottom:50,
+        backgroundColor:'#463d4a',
+        fontWeight:'bold',
+        fontFamily: ''
     }
 });
 

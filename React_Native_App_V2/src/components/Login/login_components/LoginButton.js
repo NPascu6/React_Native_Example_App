@@ -23,8 +23,10 @@ const styles = StyleSheet.create({
         alignSelf:"flex-end",
         borderColor: "white",
         borderWidth: 1,
-        width: 60,
-        margin: 2,
+        borderRadius:15,
+        width: 100,
+        margin: 10,
+        alignSelf:'center'
     },
     textStyle: {
         fontWeight:"bold",

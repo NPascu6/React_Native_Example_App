@@ -47,13 +47,21 @@ class LoginTextInput extends Component {
 const styles = StyleSheet.create({
     wrapper: {
         display: "flex",
-        margin: 8
+        width:300,
+        alignSelf:'center'
     },
     label: {
         fontWeight: "700",
-        marginBottom: 10,
-        color: "white",
-        fontSize: 18
+        color: "black",
+        fontSize: 14,
+        padding:5,
+        alignContent:'center',
+        textAlign:'center',
+        borderWidth: 1,
+        borderRadius: 15,
+        backgroundColor:'white',
+        width:180,
+        alignSelf:'center'
     },
     inputFiled: {
         borderBottomWidth: 1,
@@ -62,7 +70,7 @@ const styles = StyleSheet.create({
     },
     inputField: {
         borderBottomColor: "white",
-        margin: 1,
+        marginBottom: 20,
         padding: 2,
         borderWidth: 1,
         borderTopWidth: 0,
