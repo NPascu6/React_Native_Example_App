@@ -14,21 +14,20 @@ import * as ActionCreators from '../../actions/authentificationActions'
 import LoginButton from './login_components/LoginButton';
 import LoginTextInput from './login_components/LoginTextInput';
 
-
 class LoginScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            email: "",
+            userName: "",
             password: "",
-            title: "Login Component",
+            title: "Login",
             errorMessage: "",
             currentUser: {}
         }
     }
 
-    handleEmailChange = (email) => {
-        this.setState({ email: email });
+    handleUserNameChange = (userName) => {
+        this.setState({ userName: userName });
     }
 
     handlePasswordChange = (password) => {
@@ -43,7 +42,7 @@ class LoginScreen extends Component {
         debugger;
         if (this.props.user.loggedIn === false) {
             this.props.login({
-                userName: this.state.email,
+                userName: this.state.userName,
                 password: this.state.password
             });
         }
@@ -86,10 +85,10 @@ class LoginScreen extends Component {
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.loginHeader}>{this.state.title}</Text>
                     <LoginTextInput
-                        labelText="Email"
+                        labelText="User Name"
                         labelTextSize={14}
-                        inputType="email"
-                        onChangeText={this.handleEmailChange}
+                        inputType="text"
+                        onChangeText={this.handleUserNameChange}
                     />
                     <LoginTextInput
                         labelText="Password"
@@ -109,7 +108,7 @@ const styles = StyleSheet.create({
     wrapper: {
         display: "flex",
         flex: 1,
-        backgroundColor: "#262626"
+        backgroundColor: "#262626",
     },
     scrollViewWrapper: {
         marginTop: 20,

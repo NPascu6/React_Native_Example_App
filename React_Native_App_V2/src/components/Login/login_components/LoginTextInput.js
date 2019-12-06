@@ -6,7 +6,7 @@ class LoginTextInput extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            secureInput: !(props.inputType === "text" || props.inputType === "email")
+            secureInput: !(props.inputType === "text" || props.inputType === "userName")
         };
     }
 
