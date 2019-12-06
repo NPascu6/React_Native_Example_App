@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, StyleSheet } from 'react-native';
 //Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
@@ -18,14 +18,30 @@ class DetailsScreen extends Component {
                 <LogoutButton  navigation={this.props.navigation}/>
                 {
                     this.props.user.role === "Admin" ? 
-                    <Text onPress={()=> this.props.navigation.navigate("Admin")}>Admin logged in</Text> :
-                    <Text onPress={()=> this.props.navigation.navigate("User")}>User logged in</Text>
+                    <Text style={styles.buttonStyle} onPress={()=> this.props.navigation.navigate("Admin")}>Go To Users List</Text> :
+                    <Text style={styles.buttonStyle} onPress={()=> this.props.navigation.navigate("User")}>Open First Actions</Text>
                 }
                 <CurrentUserProfile currentUser={this.props.user.currentUser} />
             </View>
         )
     }
 }
+
+const styles = StyleSheet.create({
+    buttonStyle: {
+        backgroundColor: "gray",
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        margin: 2,
+        fontWeight: "bold",
+        color: "white",
+        padding: 2,
+        textAlign: 'center',
+        alignContent: 'center',
+        fontSize: 16
+    }
+});
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsScreen);

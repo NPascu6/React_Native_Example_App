@@ -17,13 +17,12 @@ class AdminScreen extends Component {
     render() {
         const users = userList.map((item) => {
             return <View style={styles.view} key={item.userId}>
-                <Text style={styles.text}>{item.userId}</Text>
                 <Text style={styles.text}>{item.userName}</Text>
                 <Text style={styles.text}>{item.email}</Text>
                 <Text style={styles.text}>{item.FirstName}</Text>
                 <Text style={styles.text}>{item.LastName}</Text>
-                <Text style={styles.text}>{item.StartDate}</Text>
-                <Text style={styles.text}>{item.EndDate}</Text>
+                <Text style={styles.text}>{item.StartDate ? item.StartDate.substr(0, item.StartDate.indexOf('T')) : null}</Text>
+                <Text style={styles.text}>{item.StartDate ? item.EndDate.substr(0, item.EndDate.indexOf('T')) : null}</Text>
             </View >
         });
 
@@ -37,30 +36,25 @@ class AdminScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 2,
-    },
     scrollView: {
-        backgroundColor: 'gray',
         marginHorizontal: 2,
         marginVertical: 2
     },
     text: {
         fontWeight: "bold",
         color: "white",
-        textAlign: 'center',
-        alignContent: 'center',
-        fontSize: 14,
-        borderWidth: 0.5,
-        borderColor: 'white',
-        width: 58,
-        padding: 1
+        fontSize: 12,
+        padding: 3,
+        
     },
     view: {
         flex: 1,
-        alignSelf: 'stretch',
-        flexDirection: 'row',
+        justifyContent:'space-evenly',
+        borderWidth: 5,
+        borderColor: 'white',
+        borderRadius: 15,
+        padding: 10,
+        backgroundColor: 'gray'
     }
 });
 

@@ -69,39 +69,27 @@ class UserScreen extends Component {
             <View>
                 <LogoutButton navigation={this.props.navigation} />
                 <Text>User Screen</Text>
-                <Text onPress={this.getAction1}>Action 1:{this.state.userState.action}</Text>
-                <Text onPress={this.getAction2}>Action 2:{this.state.userState.action}</Text>
-                <Text onPress={this.getAction3}>Action 3:{this.state.userState.action}</Text>
+                <Text style={styles.buttonStyle} onPress={this.getAction1}>Action 1:{this.state.userState.action}</Text>
+                <Text style={styles.buttonStyle} onPress={this.getAction2}>Action 2:{this.state.userState.action}</Text>
+                <Text style={styles.buttonStyle} onPress={this.getAction3}>Action 3:{this.state.userState.action}</Text>
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        marginTop: 2,
-    },
-    scrollView: {
-        backgroundColor: 'gray',
-        marginHorizontal: 2,
-        marginVertical: 2
-    },
-    text: {
+    buttonStyle: {
+        backgroundColor: "gray",
+        borderColor: 'white',
+        borderWidth: 1,
+        borderRadius: 15,
+        margin: 2,
         fontWeight: "bold",
         color: "white",
+        padding: 2,
         textAlign: 'center',
         alignContent: 'center',
-        fontSize: 14,
-        borderWidth: 0.5,
-        borderColor: 'white',
-        width: 58,
-        padding: 1
-    },
-    view: {
-        flex: 1,
-        alignSelf: 'stretch',
-        flexDirection: 'row',
+        fontSize: 16
     }
 });
 

@@ -35,9 +35,10 @@ class LogoutButton extends Component {
 const styles = StyleSheet.create({
     buttonStyle: {
         alignSelf: "flex-end",
-        borderColor: "black",
         backgroundColor: "gray",
+        borderColor: 'white',
         borderWidth: 1,
+        borderRadius: 15,
         width: 90,
         margin: 2,
     },

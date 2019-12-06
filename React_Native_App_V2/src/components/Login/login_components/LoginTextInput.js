@@ -38,6 +38,7 @@ class LoginTextInput extends Component {
                     style={styles.inputField}
                     autoCorrect={false}
                     secureTextEntry={this.state.secureInput}
+                    placeholder="Type here..."
                 />
             </View>
         );
@@ -76,7 +77,7 @@ const styles = StyleSheet.create({
         borderTopWidth: 0,
         borderRightWidth: 0,
         borderLeftWidth: 0,
-        color: "white"
+        color: "white",
     },
     showButton: {
         position: "absolute",
