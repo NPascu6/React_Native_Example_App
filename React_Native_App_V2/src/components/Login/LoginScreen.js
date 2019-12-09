@@ -5,6 +5,7 @@ import {
     ScrollView,
     StyleSheet
 } from 'react-native';
+import GestureRecognizer from 'react-native-swipe-gestures';
 
 //Redux
 import { bindActionCreators } from 'redux';
@@ -26,6 +27,10 @@ class LoginScreen extends Component {
         }
     }
 
+    onSwipeLeft = () => {
+        this.props.navigation.navigate('SignUp')
+    }
+
     handleUserNameChange = (userName) => {
         this.setState({ userName: userName });
     }
@@ -34,8 +39,8 @@ class LoginScreen extends Component {
         this.setState({ password: password });
     }
 
-    componentDidMount(){
-        this.setState({currentUser: this.props.currentUser})
+    componentDidMount() {
+        this.setState({ currentUser: this.props.currentUser })
     }
 
     handleLogin = () => {
@@ -48,7 +53,7 @@ class LoginScreen extends Component {
         }
         this.props.user.loggedIn === true ? this.props.navigation.navigate('Details') : null;
         debugger;
-        this.setState({currentUser: this.props.user.currentUser});
+        this.setState({ currentUser: this.props.user.currentUser });
         this.setState({ errorMessage: this.props.user.errorMessage });
     }
 
@@ -80,26 +85,40 @@ class LoginScreen extends Component {
     }*/
 
     render() {
+        const config = {
+            velocityThreshold: 0.3,
+            directionalOffsetThreshold: 80
+        };
+
         return (
-            <View style={styles.wrapper}>
-                <ScrollView style={styles.scrollView}>
-                    <Text style={styles.loginHeader}>{this.state.title}</Text>
-                    <LoginTextInput
-                        labelText="User Name"
-                        labelTextSize={14}
-                        inputType="text"
-                        onChangeText={this.handleUserNameChange}
-                    />
-                    <LoginTextInput
-                        labelText="Password"
-                        labelTextSize={14}
-                        inputType="password"
-                        onChangeText={this.handlePasswordChange}
-                    />
-                </ScrollView>
-                <Text>{this.state.errorMessage}</Text>
-                <LoginButton handleLogin={this.handleLogin} />
-            </View >
+            <GestureRecognizer
+                onSwipeLeft={this.onSwipeLeft}
+                config={config}
+                style={{
+                    flex: 1,
+                    backgroundColor: this.state.backgroundColor
+                }}
+            >
+                <View style={styles.wrapper}>
+                    <ScrollView style={styles.scrollView}>
+                        <Text style={styles.loginHeader}>{this.state.title}</Text>
+                        <LoginTextInput
+                            labelText="User Name"
+                            labelTextSize={14}
+                            inputType="text"
+                            onChangeText={this.handleUserNameChange}
+                        />
+                        <LoginTextInput
+                            labelText="Password"
+                            labelTextSize={14}
+                            inputType="password"
+                            onChangeText={this.handlePasswordChange}
+                        />
+                    </ScrollView>
+                    <Text>{this.state.errorMessage}</Text>
+                    <LoginButton handleLogin={this.handleLogin} />
+                </View >
+            </GestureRecognizer>
         )
     }
 }
@@ -115,9 +134,9 @@ const styles = StyleSheet.create({
         fontWeight: "300",
         marginBottom: 0,
         textAlign: 'center',
-        marginBottom:50,
-        backgroundColor:'#463d4a',
-        fontWeight:'bold',
+        marginBottom: 50,
+        backgroundColor: '#463d4a',
+        fontWeight: 'bold',
         fontFamily: ''
     }
 });
