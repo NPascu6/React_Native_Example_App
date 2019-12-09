@@ -5,14 +5,19 @@ class AddUserButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            label: "Add user"
+            labelAdd: "Add user",
+            labelSignUp: "Sign UP",
+            isSignUpButton: false,
         }
     }
 
     render() {
         return (
             <TouchableOpacity style={styles.buttonStyle}>
-                <Text style={styles.textStyle}>{this.state.label}</Text>
+                {!this.props.isSignUp ?
+                    <Text style={styles.textStyle}>{this.state.labelAdd}</Text> :
+                    <Text style={styles.textStyle}>{this.state.labelSignUp}</Text>
+                }
             </TouchableOpacity>
         )
     }
@@ -20,17 +25,17 @@ class AddUserButton extends Component {
 
 const styles = StyleSheet.create({
     buttonStyle: {
-        alignSelf:"flex-end",
+        alignSelf: "flex-end",
         borderColor: "white",
         borderWidth: 1,
-        borderRadius:15,
+        borderRadius: 15,
         width: 100,
         margin: 10,
-        alignSelf:'center',
+        alignSelf: 'center',
         backgroundColor: 'gray'
     },
     textStyle: {
-        fontWeight:"bold",
+        fontWeight: "bold",
         color: "white",
         padding: 2,
         textAlign: 'center',

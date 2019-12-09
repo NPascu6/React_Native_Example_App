@@ -46,15 +46,15 @@ class AdminScreen extends Component {
                 <View>
                     {
                         !this.state.addUser ?
-                            <Text
+                            <Text style={styles.backButton}
                                 onPress={this.addUser}>Add User
                          </Text>
                             :
-                            <View> 
-                                <Text
-                                    onPress={this.addUser}>Back To Admin
+                            <View>
+                                <Text style={styles.backButton}
+                                    onPress={this.addUser}>Back To User List
                                     </Text>
-                                    <AddUserComponent userList={userList} />
+                                <AddUserComponent userList={userList} />
                             </View>
                     }
                 </View>
@@ -86,6 +86,17 @@ const styles = StyleSheet.create({
         borderRadius: 15,
         padding: 10,
         backgroundColor: 'gray'
+    },
+    backButton: {
+        borderWidth: 1,
+        borderColor: 'gray',
+        borderRadius: 10,
+        padding: 2,
+        margin: 10,
+        color: 'white',
+        backgroundColor: 'gray',
+        alignContent: 'center',
+        textAlign: 'center'
     }
 });
 

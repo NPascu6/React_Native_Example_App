@@ -25,9 +25,9 @@ class SignUpScreen extends Component {
                 }}
             >
                 <View>
-                    <Text>Sign Up screen</Text>
+                    <Text style={styles.loginHeader}>Sign Up screen</Text>
                 </View>
-                <AddUserComponent myData={'test'}/>
+                <AddUserComponent isSignupComponent={true} />
             </GestureRecognizer>
         )
     }
@@ -35,10 +35,6 @@ class SignUpScreen extends Component {
 
 
 const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        backgroundColor: "#262626",
-    },
     loginHeader: {
         fontSize: 20,
         color: "white",

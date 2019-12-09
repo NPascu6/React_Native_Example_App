@@ -26,7 +26,8 @@ class AddUserComponent extends Component {
                 EndDate: "",
                 Role: "",
                 Password: ""
-            }
+            },
+            isSignUp: false,
         }
     }
 
@@ -34,7 +35,9 @@ class AddUserComponent extends Component {
         debugger;
         this.setState({
             users: this.props.userList
-        })
+        });
+
+        this.props.isSignupComponent === true ? this.setState({ isSignUp: true }) : this.state.isSignUp = false;
     }
 
     render() {
@@ -45,14 +48,18 @@ class AddUserComponent extends Component {
                     <TextInput style={styles.addInputStyle} onChange={() => { this.setState({ userName }) }} />
                     <Text style={styles.loginHeader}>Email</Text>
                     <TextInput style={styles.addInputStyle} onChange={() => { this.setState({ email }) }} />
-                    <Text style={styles.loginHeader}>First Name</Text>
-                    <TextInput style={styles.addInputStyle} onChange={() => { this.setState({ FirstName }) }} />
                     <Text style={styles.loginHeader}>Password</Text>
                     <TextInput style={styles.addInputStyle} onChange={() => { this.setState({ Password }) }} />
-                    <Text style={styles.loginHeader}>Role</Text>
-                    <TextInput style={styles.addInputStyle} onChange={() => { this.setState({ Role }) }} />
+                    {!this.state.isSignUp ?
+                        <View>
+                            <Text style={styles.loginHeader}>First Name</Text>
+                            <TextInput style={styles.addInputStyle} onChange={() => { this.setState({ FirstName }) }} />
+                            <Text style={styles.loginHeader}>Role</Text>
+                            <TextInput style={styles.addInputStyle} onChange={() => { this.setState({ Role }) }} /></View>
+                        : null
+                    }
                 </ScrollView>
-                <AddUserButton />
+                <AddUserButton isSignUp={this.state.isSignUp} />
             </View>
         )
     }
@@ -76,9 +83,6 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderColor: 'white',
         padding: 0
-    },
-    container: {
-        height: 270
     },
     scrollView: {
         backgroundColor: '#463d4a',
