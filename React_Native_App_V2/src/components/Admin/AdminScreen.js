@@ -25,9 +25,7 @@ class AdminScreen extends Component {
     addUser = () => {
         this.setState({ addUser: !this.state.addUser })
     }
-
-
-
+    
     render() {
         const users = userList.map((item) => {
             return <View style={styles.view} key={item.userId}>

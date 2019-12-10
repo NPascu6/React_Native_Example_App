@@ -14,9 +14,10 @@ class AddUserButton extends Component {
     render() {
         return (
             <TouchableOpacity style={styles.buttonStyle}>
-                {!this.props.isSignUp ?
-                    <Text style={styles.textStyle}>{this.state.labelAdd}</Text> :
-                    <Text style={styles.textStyle}>{this.state.labelSignUp}</Text>
+                {
+                    !this.props.isSignUp ?
+                        <Text style={styles.textStyle}>{this.state.labelAdd}</Text> :
+                        <Text style={styles.textStyle}>{this.state.labelSignUp}</Text>
                 }
             </TouchableOpacity>
         )

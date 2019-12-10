@@ -33,7 +33,6 @@ class SignUpScreen extends Component {
     }
 }
 
-
 const styles = StyleSheet.create({
     loginHeader: {
         fontSize: 20,
