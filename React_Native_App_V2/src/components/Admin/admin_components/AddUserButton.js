@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
+import styles from '../../../styles/SharedStyles';
 
 class AddUserButton extends Component {
     constructor(props) {
@@ -23,26 +24,5 @@ class AddUserButton extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    buttonStyle: {
-        alignSelf: "flex-end",
-        borderColor: "white",
-        borderWidth: 1,
-        borderRadius: 15,
-        width: 100,
-        margin: 10,
-        alignSelf: 'center',
-        backgroundColor: 'gray'
-    },
-    textStyle: {
-        fontWeight: "bold",
-        color: "white",
-        padding: 2,
-        textAlign: 'center',
-        alignContent: 'center',
-        fontSize: 20
-    }
-});
 
 export default AddUserButton;

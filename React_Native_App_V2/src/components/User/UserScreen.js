@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView, StyleSheet, SafeAreaView } from 'react-native';
+import { View, Text } from 'react-native';
 //Redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../actions/userActions';
 
 //Components
+import styles from '../../styles/UserStyles';
 import LogoutButton from '../Shared_Components/LogoutButton';
 
-mapStateToProps = (state) => { return { userState: state.userReducers.userState, user: state.authentificationReducers.user.currentUser } }
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+
 
 const API_URL = 'http://192.168.0.213:4000';
 const URL = `${API_URL}/users`;
@@ -25,21 +25,6 @@ class UserScreen extends Component {
             currentUser: {}
         }
     }
-
-    /*getUsers = () => {
-        fetch(URL, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        }).then(
-            (response) =>
-                response.json()
-        ).done(
-            (responseJson) => {
-                this.setState({ users: responseJson.recordset })
-            })
-    }*/
 
     componentDidMount() {
         //this.getUsers();
@@ -77,20 +62,7 @@ class UserScreen extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    buttonStyle: {
-        backgroundColor: "gray",
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        margin: 2,
-        fontWeight: "bold",
-        color: "white",
-        padding: 2,
-        textAlign: 'center',
-        alignContent: 'center',
-        fontSize: 16
-    }
-});
+mapStateToProps = (state) => { return { userState: state.userReducers.userState, user: state.authentificationReducers.user.currentUser } }
+mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserScreen);

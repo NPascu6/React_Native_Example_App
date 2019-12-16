@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 import AddUserComponent from '../Admin/admin_components/AddUserComponent';
+import styles from '../../styles/SignUpStyles';
 
 class SignUpScreen extends Component {
 
@@ -32,19 +33,5 @@ class SignUpScreen extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    loginHeader: {
-        fontSize: 20,
-        color: "white",
-        fontWeight: "300",
-        marginBottom: 0,
-        textAlign: 'center',
-        marginBottom: 50,
-        backgroundColor: '#463d4a',
-        fontWeight: 'bold',
-        fontFamily: ''
-    }
-});
 
 export default SignUpScreen;

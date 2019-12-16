@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
 //Redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ActionCreators from '../../actions/authentificationActions'
+import * as ActionCreators from '../../actions/authentificationActions';
 
 //Components
 import LogoutButton from '../Shared_Components/LogoutButton';
-import AddUserComponent from '../Admin/admin_components/AddUserComponent'
+import AddUserComponent from '../Admin/admin_components/AddUserComponent';
+import styles from '../../styles/AdminStyles';
 
 import { users as userList } from '../Login/login_components/userList.json';
 
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+
 
 class AdminScreen extends Component {
 
@@ -64,38 +65,6 @@ class AdminScreen extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    scrollView: {
-        marginHorizontal: 2,
-        marginVertical: 2
-    },
-    text: {
-        fontWeight: "bold",
-        color: "white",
-        fontSize: 12,
-        padding: 3,
-
-    },
-    view: {
-        flex: 1,
-        justifyContent: 'space-evenly',
-        borderWidth: 5,
-        borderColor: 'white',
-        borderRadius: 15,
-        padding: 10,
-        backgroundColor: 'gray'
-    },
-    backButton: {
-        borderWidth: 1,
-        borderColor: 'gray',
-        borderRadius: 10,
-        padding: 2,
-        margin: 10,
-        color: 'white',
-        backgroundColor: 'gray',
-        alignContent: 'center',
-        textAlign: 'center'
-    }
-});
+mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen);

@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import { StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { Text, TouchableOpacity } from 'react-native';
 
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ActionCreators from '../../actions/authentificationActions'
-
-mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+import styles from '../../styles/SharedStyles';
+import * as ActionCreators from '../../actions/authentificationActions';
 
 class LogoutButton extends Component {
     constructor(props) {
@@ -32,24 +30,7 @@ class LogoutButton extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    buttonStyle: {
-        alignSelf: "flex-end",
-        backgroundColor: "gray",
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        width: 90,
-        margin: 2,
-    },
-    textStyle: {
-        fontWeight: "bold",
-        color: "white",
-        padding: 2,
-        textAlign: 'center',
-        alignContent: 'center',
-        fontSize: 16
-    }
-});
+mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
+mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(LogoutButton);;

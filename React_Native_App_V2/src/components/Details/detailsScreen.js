@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 //Redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as ActionCreators from '../../actions/authentificationActions'
+import * as ActionCreators from '../../actions/authentificationActions';
 //Components
+import styles from '../../styles/DetailsStyles';
 import LogoutButton from '../Shared_Components/LogoutButton';
 import CurrentUserProfile from '../User/CurrentUserProfile';
 
-mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+
 
 class DetailsScreen extends Component {
     render() {
@@ -27,21 +27,7 @@ class DetailsScreen extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    buttonStyle: {
-        backgroundColor: "gray",
-        borderColor: 'white',
-        borderWidth: 1,
-        borderRadius: 15,
-        margin: 2,
-        fontWeight: "bold",
-        color: "white",
-        padding: 2,
-        textAlign: 'center',
-        alignContent: 'center',
-        fontSize: 16
-    }
-});
-
+mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
+mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsScreen);

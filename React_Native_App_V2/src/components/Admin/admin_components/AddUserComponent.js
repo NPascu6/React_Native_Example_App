@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, TextInput, ScrollView } from 'react-native';
+import { View, Text, TextInput, ScrollView } from 'react-native';
 //Redux
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux';
 import * as ActionCreators from '../../../actions/adminActions'
 
-import AddUserButton from '../admin_components/AddUserButton'
-
-mapStateToProps = (state) => { return { admin: state.adminReducers.userList.users }; }
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+import AddUserButton from '../admin_components/AddUserButton';
+import styles from '../../../styles/AdminStyles';
 
 class AddUserComponent extends Component {
 
@@ -65,29 +63,7 @@ class AddUserComponent extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        backgroundColor: "#262626"
-    },
-    loginHeader: {
-        fontSize: 16,
-        color: "white",
-        fontWeight: "300",
-        marginBottom: 0,
-        textAlign: 'center',
-        backgroundColor: '#463d4a',
-        fontWeight: 'bold',
-    },
-    addInputStyle: {
-        borderBottomWidth: 1,
-        borderColor: 'white',
-        padding: 0
-    },
-    scrollView: {
-        backgroundColor: '#463d4a',
-        marginHorizontal: 30,
-    }
-});
+mapStateToProps = (state) => { return { admin: state.adminReducers.userList.users }; }
+mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUserComponent);

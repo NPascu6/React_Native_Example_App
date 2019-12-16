@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    ScrollView,
-    StyleSheet
+    ScrollView
 } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 //Redux
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux'
-import * as ActionCreators from '../../actions/authentificationActions'
+import { connect } from 'react-redux';
+import * as ActionCreators from '../../actions/authentificationActions';
+import styles from '../../styles/LoginStyles';
 //Components
 import LoginButton from './login_components/LoginButton';
 import LoginTextInput from './login_components/LoginTextInput';
@@ -57,33 +57,6 @@ class LoginScreen extends Component {
         this.setState({ errorMessage: this.props.user.errorMessage });
     }
 
-    /*handleLogin = () => {
-        const {gotResultsForLogin} = this.props;
-        try {
-            const response = await fetch(URL,
-                {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        data: userCredentials
-                    })
-                });
-
-            const result = await response.json();
-            // dispatch(getLoginResult(result));
-            gotResultsForLogin(result);
-        }
-        catch (err) {
-            console.log(err);
-            return {
-                type: LOGIN_ERROR,
-                payload: error
-            }
-        }
-    }*/
-
     render() {
         const config = {
             velocityThreshold: 0.3,
@@ -123,23 +96,7 @@ class LoginScreen extends Component {
     }
 }
 
-const styles = StyleSheet.create({
-    wrapper: {
-        flex: 1,
-        backgroundColor: "#262626",
-    },
-    loginHeader: {
-        fontSize: 20,
-        color: "white",
-        fontWeight: "300",
-        marginBottom: 0,
-        textAlign: 'center',
-        marginBottom: 50,
-        backgroundColor: '#463d4a',
-        fontWeight: 'bold',
-        fontFamily: ''
-    }
-});
+
 
 mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }

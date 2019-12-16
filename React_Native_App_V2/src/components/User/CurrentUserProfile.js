@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, ScrollView } from 'react-native';
+import styles from '../../styles/UserStyles';
 
 class CurrentUserProfile extends Component {
 
@@ -16,7 +17,6 @@ class CurrentUserProfile extends Component {
     }
 
     componentDidMount() {
-        debugger;
         this.setState({
             userName: this.props.currentUser.userName,
             email: this.props.currentUser.email,
@@ -27,8 +27,6 @@ class CurrentUserProfile extends Component {
     }
 
     render() {
-        debugger;
-
         return (
             <ScrollView style={styles.scrollView}>
                 <View style={styles.view} key={this.state.userId}>
@@ -77,41 +75,5 @@ class CurrentUserProfile extends Component {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    scrollView: {
-        backgroundColor: '#463d4a',
-        borderColor: "white",
-        borderWidth: 1,
-        borderRadius: 15,
-        padding: 10,
-        margin: 10,
-        alignSelf: 'center', 
-    },
-    text: {
-        fontWeight: "bold",
-        color: "white",
-        fontSize: 14,
-        borderColor: 'white',
-        padding: 1
-    },
-    textProfile: {
-        fontWeight: "bold",
-        color: "white",
-        fontSize: 14,
-        borderColor: 'white',
-        padding: 1,
-    },
-    view: {
-        alignSelf: 'center',
-        width: 200,
-        justifyContent: 'flex-end',
-    },
-    profileRow: {
-        flex: 1,
-        justifyContent: 'space-between',
-        flexDirection: 'row'
-    }
-});
 
 export default CurrentUserProfile;
