@@ -12,7 +12,6 @@ let newState = {
 };
 
 export default (state, action) => {
-    debugger;
     switch (action.type) {
         case USER_ACTION_1:
             newState.userState.action = "Action 1 from redux";

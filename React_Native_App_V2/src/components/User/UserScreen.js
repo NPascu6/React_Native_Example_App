@@ -9,11 +9,6 @@ import * as ActionCreators from '../../actions/userActions';
 import styles from '../../styles/UserStyles';
 import LogoutButton from '../Shared_Components/LogoutButton';
 
-
-
-const API_URL = 'http://192.168.0.213:4000';
-const URL = `${API_URL}/users`;
-
 class UserScreen extends Component {
     constructor(props) {
         super(props);
@@ -26,24 +21,15 @@ class UserScreen extends Component {
         }
     }
 
-    componentDidMount() {
-        //this.getUsers();
-        debugger;
-        var currentUser = this.props.user.currentUser;
-    }
-
     getAction1 = () => {
-        debugger;
         this.props.userAction1();
         this.setState({ userState: this.props.userState });
     }
     getAction2 = () => {
-        debugger;
         this.props.userAction2();
         this.setState({ userState: this.props.userState });
     }
     getAction3 = () => {
-        debugger;
         this.props.userAction3();
         this.setState({ userState: this.props.userState });
     }
@@ -62,7 +48,12 @@ class UserScreen extends Component {
     }
 }
 
-mapStateToProps = (state) => { return { userState: state.userReducers.userState, user: state.authentificationReducers.user.currentUser } }
+mapStateToProps = (state) => {
+    return {
+        userState: state.userReducers.userState,
+        user: state.authentificationReducers.user.currentUser
+    }
+}
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserScreen);

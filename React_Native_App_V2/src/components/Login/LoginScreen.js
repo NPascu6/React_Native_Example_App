@@ -7,10 +7,9 @@ import {
 import GestureRecognizer from 'react-native-swipe-gestures';
 
 //Redux
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as ActionCreators from '../../actions/authentificationActions';
 import styles from '../../styles/LoginStyles';
+import { loginAction } from '../../actions/authentificationActions';
 //Components
 import LoginButton from './login_components/LoginButton';
 import LoginTextInput from './login_components/LoginTextInput';
@@ -44,17 +43,15 @@ class LoginScreen extends Component {
     }
 
     handleLogin = () => {
-        debugger;
-        if (this.props.user.loggedIn === false) {
+        if (this.props.loggedIn === false) {
             this.props.login({
                 userName: this.state.userName,
                 password: this.state.password
             });
         }
-        this.props.user.loggedIn === true ? this.props.navigation.navigate('Details') : null;
-        debugger;
-        this.setState({ currentUser: this.props.user.currentUser });
-        this.setState({ errorMessage: this.props.user.errorMessage });
+        this.props.loggedIn === true ? this.props.navigation.navigate('Details') : null;
+        this.setState({ currentUser: this.props.currentUser });
+        this.setState({ errorMessage: this.props.errorMessage });
     }
 
     render() {
@@ -98,11 +95,16 @@ class LoginScreen extends Component {
 
 
 
-mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+const mapStateToProps = (state) => {
+    return {
+        loggedIn: state.authentificationReducers.user.loggedIn,
+        currentUser: state.authentificationReducers.user.currentUser,
+        errorMessage: state.authentificationReducers.user.loggerrorMessageedIn,
+    };
+};
 
-/*mapDispatchToProps = (dispatch) => { return {
-    gotResultsForLogin: (result) => dispatch(getLoginResult(result))
-}}*/
+const mapDispatchToProps = dispatch => ({
+    login: (user) => dispatch(loginAction(user))
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

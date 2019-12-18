@@ -30,7 +30,6 @@ class AddUserComponent extends Component {
     }
 
     componentDidMount() {
-        debugger;
         this.setState({
             users: this.props.userList
         });
@@ -63,7 +62,11 @@ class AddUserComponent extends Component {
     }
 }
 
-mapStateToProps = (state) => { return { admin: state.adminReducers.userList.users }; }
+mapStateToProps = (state) => {
+    return {
+        admin: state.adminReducers.userList.users
+    };
+}
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddUserComponent);

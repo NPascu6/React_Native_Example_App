@@ -10,7 +10,6 @@ let newState = {
 };
 
 export default (state, action) => {
-    debugger;
     switch (action.type) {
         case ADD_USER:
             newState.userList.users = [];
