@@ -2,33 +2,34 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView } from 'react-native';
 //Redux
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as ActionCreators from '../../actions/authentificationActions';
+import { getUsers } from '../../actions/adminActions';
 
 //Components
 import LogoutButton from '../Shared_Components/LogoutButton';
 import AddUserComponent from '../Admin/admin_components/AddUserComponent';
 import styles from '../../styles/AdminStyles';
 
-import { users as userList } from '../Login/login_components/userList.json';
-
-
-
 class AdminScreen extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            addUser: false
+            addUser: false,
+            users: []
         }
     }
 
     addUser = () => {
         this.setState({ addUser: !this.state.addUser })
     }
-    
+
+    componentDidMount() {
+        this.props.getUsers();
+        this.setState({ users: this.props.users })
+    }
+
     render() {
-        const users = userList.map((item) => {
+        const users = this.state.users.map((item) => {
             return <View style={styles.view} key={item.userId}>
                 <Text style={styles.text}>{item.userName}</Text>
                 <Text style={styles.text}>{item.email}</Text>
@@ -65,6 +66,13 @@ class AdminScreen extends Component {
     }
 }
 
-mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
+mapStateToProps = (state) => {
+    return {
+        users: state.adminReducers.users
+    };
+}
+const mapDispatchToProps = dispatch => ({
+    getUsers: () => dispatch(getUsers())
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen);

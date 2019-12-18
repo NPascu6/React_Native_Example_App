@@ -15,19 +15,24 @@ class DetailsScreen extends Component {
     render() {
         return (
             <View>
-                <LogoutButton  navigation={this.props.navigation}/>
+                <LogoutButton navigation={this.props.navigation} />
                 {
-                    this.props.user.role === "Admin" ? 
-                    <Text style={styles.buttonStyle} onPress={()=> this.props.navigation.navigate("Admin")}>Go To Users List</Text> :
-                    <Text style={styles.buttonStyle} onPress={()=> this.props.navigation.navigate("User")}>Open First Actions</Text>
+                    this.props.role === "Admin" ?
+                        <Text style={styles.buttonStyle} onPress={() => this.props.navigation.navigate("Admin")}>Go To Users List</Text> :
+                        <Text style={styles.buttonStyle} onPress={() => this.props.navigation.navigate("User")}>Open First Actions</Text>
                 }
-                <CurrentUserProfile currentUser={this.props.user.currentUser} />
+                <CurrentUserProfile currentUser={this.props.currentUser} />
             </View>
         )
     }
 }
 
-mapStateToProps = (state) => { return { user: state.authentificationReducers.user }; }
+mapStateToProps = (state) => {
+    return {
+        role: state.authentificationReducers.role,
+        currentUser: state.authentificationReducers.currentUser
+    };
+}
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }
 
 export default connect(mapStateToProps, mapDispatchToProps)(DetailsScreen);

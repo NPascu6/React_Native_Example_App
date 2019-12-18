@@ -51,7 +51,7 @@ class UserScreen extends Component {
 mapStateToProps = (state) => {
     return {
         userState: state.userReducers.userState,
-        user: state.authentificationReducers.user.currentUser
+        user: state.authentificationReducers.currentUser
     }
 }
 mapDispatchToProps = (dispatch) => { return bindActionCreators(ActionCreators, dispatch); }

@@ -5,48 +5,50 @@ import {
     LOGIN_ERROR
 } from '../actions/authentificationActions';
 
-let newState = {
-    user: {
-        loggedIn: false,
-        errorMessage: '',
-        role: '',
-        currentUser: {}
-    }
+const newState = {
+    loggedIn: false,
+    errorMessage: '',
+    role: '',
+    currentUser: {}
 };
 
-export default (state, action) => {
-    debugger;
+const reducer = (state = newState, action) => {
     switch (action.type) {
-      
         case LOGIN_SUCCESS_ADMIN:
-            newState.user.loggedIn = true;
-            newState.user.role = "Admin";
-            newState.user.errorMessage = "";
-            newState.user.currentUser = action.payload;
-
-            return newState;
+            return {
+                ...state,
+                loggedIn: true,
+                role: 'Admin',
+                errorMessage: '',
+                currentUser: action.payload
+            }
 
         case LOGIN_SUCCESS_USER:
-            newState.user.loggedIn = true;
-            newState.user.role = "User";
-            newState.user.errorMessage = "";
-            newState.user.currentUser = action.payload;
-
-            return newState;
+            return {
+                ...state,
+                loggedIn: true,
+                role: 'User',
+                errorMessage: '',
+                currentUser: action.payload
+            }
 
         case LOGOUT:
-            newState.user.loggedIn = false;
-            newState.user.errorMessage = "";
-
-            return newState;
+            return {
+                ...state,
+                loggedIn: false,
+                errorMessage: ''
+            }
 
         case LOGIN_ERROR:
-            newState.user.loggedIn = false;
-            newState.user.errorMessage = 'Incorrect user or password';
-
-            return newState;
+            return {
+                ...state,
+                loggedIn: false,
+                errorMessage: 'Incorrect user or password'
+            }
 
         default:
-            return state || newState;
+            return state;
     }
 };
+
+export default reducer;

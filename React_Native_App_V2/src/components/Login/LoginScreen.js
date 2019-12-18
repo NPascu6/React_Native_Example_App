@@ -49,7 +49,6 @@ class LoginScreen extends Component {
                 password: this.state.password
             });
         }
-        this.props.loggedIn === true ? this.props.navigation.navigate('Details') : null;
         this.setState({ currentUser: this.props.currentUser });
         this.setState({ errorMessage: this.props.errorMessage });
     }
@@ -59,7 +58,9 @@ class LoginScreen extends Component {
             velocityThreshold: 0.3,
             directionalOffsetThreshold: 80
         };
-
+        if (this.props.loggedIn === true) {
+            return this.props.navigation.navigate('Details');
+        }
         return (
             <GestureRecognizer
                 onSwipeLeft={this.onSwipeLeft}
@@ -97,9 +98,9 @@ class LoginScreen extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        loggedIn: state.authentificationReducers.user.loggedIn,
-        currentUser: state.authentificationReducers.user.currentUser,
-        errorMessage: state.authentificationReducers.user.loggerrorMessageedIn,
+        loggedIn: state.authentificationReducers.loggedIn,
+        currentUser: state.authentificationReducers.currentUser,
+        errorMessage: state.authentificationReducers.errorMessage,
     };
 };
 
