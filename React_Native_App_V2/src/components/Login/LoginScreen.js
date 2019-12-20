@@ -22,7 +22,8 @@ class LoginScreen extends Component {
             password: "",
             title: "Norbi's Demo app",
             errorMessage: "",
-            currentUser: {}
+            currentUser: {},
+            loggedIn: false
         }
     }
 
@@ -42,6 +43,12 @@ class LoginScreen extends Component {
         this.setState({ currentUser: this.props.currentUser })
     }
 
+    componentDidUpdate(previousProps) {
+        if (previousProps.loggedIn !== this.props.loggedIn && this.props.loggedIn === true) {
+            this.props.navigation.navigate('Details');
+        }
+    }
+
     handleLogin = () => {
         if (this.props.loggedIn === false) {
             this.props.login({
@@ -58,16 +65,12 @@ class LoginScreen extends Component {
             velocityThreshold: 0.3,
             directionalOffsetThreshold: 80
         };
-        if (this.props.loggedIn === true) {
-            return this.props.navigation.navigate('Details');
-        }
         return (
             <GestureRecognizer
                 onSwipeLeft={this.onSwipeLeft}
                 config={config}
                 style={{
-                    flex: 1,
-                    backgroundColor: this.state.backgroundColor
+                    flex: 1
                 }}
             >
                 <View style={styles.wrapper}>

@@ -28,6 +28,12 @@ class AdminScreen extends Component {
         this.setState({ users: this.props.users })
     }
 
+    componentDidUpdate(previouseProps) {
+        if (previouseProps.users !== this.props.users) {
+            this.setState({ users: this.props.users })
+        }
+    }
+
     render() {
         const users = this.state.users.map((item) => {
             return <View style={styles.view} key={item.userId}>
@@ -54,7 +60,7 @@ class AdminScreen extends Component {
                                 <Text style={styles.backButton}
                                     onPress={this.addUser}>Back To User List
                                     </Text>
-                                <AddUserComponent userList={userList} />
+                                <AddUserComponent userList={users} />
                             </View>
                     }
                 </View>

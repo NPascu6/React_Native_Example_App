@@ -9,6 +9,7 @@ class AddUserButton extends Component {
             labelAdd: "Add user",
             labelSignUp: "Sign UP",
             isSignUpButton: false,
+            user: {}
         }
     }
 
@@ -17,12 +18,15 @@ class AddUserButton extends Component {
             <TouchableOpacity style={styles.buttonStyle}>
                 {
                     !this.props.isSignUp ?
-                        <Text style={styles.textStyle}>{this.state.labelAdd}</Text> :
-                        <Text style={styles.textStyle}>{this.state.labelSignUp}</Text>
+                        <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelAdd}</Text> :
+                        <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelSignUp}</Text>
                 }
             </TouchableOpacity>
         )
     }
 }
+
+
+
 
 export default AddUserButton;

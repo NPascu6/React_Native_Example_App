@@ -1,16 +1,17 @@
 export const ADD_USER = 'ADD_USER';
+export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
 export const GET_USERS = 'GET_USERS';
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 export const GET_USERS_FAILED = 'GET_USERS_FAILED';
 
-export function addUser(user) {
+export const addUser = (user) => {
     return {
         type: ADD_USER,
         payload: user
     }
 }
 
-export function getUsers() {
+export const getUsers = () => {
     return {
         type: GET_USERS
     }

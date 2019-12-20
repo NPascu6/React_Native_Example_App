@@ -1,12 +1,13 @@
 import {
     LOGIN_ERROR,
     LOGIN_SUCCESS_ADMIN,
-    LOGIN_SUCCESS_USER
+    LOGIN_SUCCESS_USER,
 } from '../actions/authentificationActions';
 
 import {
     GET_USERS_SUCCESS,
-    GET_USERS_FAILED
+    GET_USERS_FAILED,
+    ADD_USER_SUCCESS
 } from '../actions/adminActions';
 
 import { takeLatest, put, all } from 'redux-saga/effects';
@@ -33,6 +34,10 @@ function* getUsers() {
 }
 
 function* addUser(action) {
+    yield put({
+        type: ADD_USER_SUCCESS,
+        payload: action.payload
+    })
 }
 
 function* deleteUser(action) {
@@ -68,7 +73,8 @@ function* login(action) {
 
 function* actionWatcher() {
     yield takeLatest('GET_USERS', getUsers);
-    yield takeLatest('LOGIN', login)
+    yield takeLatest('LOGIN', login);
+    yield takeLatest('ADD_USER', addUser)
 }
 
 export default function* rootSaga() {
