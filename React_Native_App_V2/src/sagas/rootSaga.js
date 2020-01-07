@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 import {
     LOGIN_ERROR,
     LOGIN_SUCCESS_ADMIN,
@@ -12,6 +14,11 @@ import {
 
 import { takeLatest, put, all } from 'redux-saga/effects';
 import { users as userList } from '../components/Login/login_components/userList.json';
+
+
+const API_URL = ' http://192.168.122.104:4000'
+const url1 = `${API_URL}/users`;
+const url2 = `${API_URL}/login`;
 
 function* getUsers() {
     let users = [];
@@ -48,27 +55,15 @@ function* editUser(action) {
 
 function* login(action) {
     debugger;
-    for (let user of userList) {
-        if (action.payload.userName === user.userName
-            && action.payload.password === user.Password
-            && user.Role === "Admin") {
-            return yield put({
-                type: LOGIN_SUCCESS_ADMIN,
-                payload: user
-            })
-        }
-        else if (action.payload.userName === user.userName
-            && action.payload.password === user.Password
-            && user.Role === "User") {
-            return yield put({
-                type: LOGIN_SUCCESS_USER,
-                payload: user
-            })
-        }
-    };
-    return yield put({
-        type: LOGIN_ERROR
-    })
+    try {
+        //var user = yield axios.get(url2, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }).then(response => response.json());
+        var user = yield axios.post(url2, { body: action.payload });
+        debugger;
+        user.data.rowsAffected[0] === 1 ? yield put({ type: LOGIN_SUCCESS_ADMIN, payload: user.data.recordset[0] }) : yield put({ type: LOGIN_ERROR, payload: "Authentification failed" });
+    }
+    catch (err) {
+        yield put({ type: LOGIN_ERROR, payload: err, error: true });
+    }
 }
 
 function* actionWatcher() {
