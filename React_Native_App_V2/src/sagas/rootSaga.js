@@ -13,7 +13,6 @@ import {
 } from '../actions/adminActions';
 
 import { takeLatest, put, all } from 'redux-saga/effects';
-import { users as userList } from '../components/Login/login_components/userList.json';
 
 
 const API_URL = ' http://192.168.122.104:4000'
@@ -21,23 +20,27 @@ const url1 = `${API_URL}/users`;
 const url2 = `${API_URL}/login`;
 
 function* getUsers() {
-    let users = [];
-    for (let user of userList) {
-        users.push(user);
-    };
-    if (users.length > 0) {
-        yield put({
-            type: GET_USERS_SUCCESS,
-            payload: users
-        })
+    try {
+        var response = yield axios.get(url1);
+        if (response.data.recordset.length > 0) {
+            yield put({
+                type: GET_USERS_SUCCESS,
+                payload: response.data.recordset
+            })
+        }
+        else {
+            yield put({
+                type: GET_USERS_FAILED,
+                payload: response
+            })
+        }
     }
-    else {
+    catch (err) {
         yield put({
             type: GET_USERS_FAILED,
-            payload: users
+            payload: err
         })
     }
-
 }
 
 function* addUser(action) {
@@ -54,12 +57,12 @@ function* editUser(action) {
 }
 
 function* login(action) {
-    debugger;
     try {
-        //var user = yield axios.get(url2, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(action.payload) }).then(response => response.json());
-        var user = yield axios.post(url2, { body: action.payload });
-        debugger;
-        user.data.rowsAffected[0] === 1 ? yield put({ type: LOGIN_SUCCESS_ADMIN, payload: user.data.recordset[0] }) : yield put({ type: LOGIN_ERROR, payload: "Authentification failed" });
+        var response = yield axios.post(url2, { body: action.payload });
+        response.data.rowsAffected[0] === 1 ?
+            (response.data.recordset[0].RoleName === 'admin' ? yield put({ type: LOGIN_SUCCESS_ADMIN, payload: response.data.recordset[0] })
+                : yield put({ type: LOGIN_SUCCESS_USER, payload: response.data.recordset[0] }))
+            : yield put({ type: LOGIN_ERROR, payload: "Authentification failed" });
     }
     catch (err) {
         yield put({ type: LOGIN_ERROR, payload: err, error: true });
