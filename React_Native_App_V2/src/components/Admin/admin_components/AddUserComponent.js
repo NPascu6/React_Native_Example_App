@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { View, Text, TextInput, ScrollView } from 'react-native';
 //Redux
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { signUpAction } from '../../../actions/adminActions';
 
 import AddUserButton from '../admin_components/AddUserButton';
+import DatePickerComponent from '../../Shared_Components/DatePicker';
 import styles from '../../../styles/AdminStyles';
 
 class AddUserComponent extends Component {
@@ -33,81 +35,66 @@ class AddUserComponent extends Component {
         this.props.isSignupComponent === true ? this.setState({ isSignUp: true }) : this.state.isSignUp = false;
     }
 
-    setFirstName = (action) => {
-        debugger;
-        this.setState({ FirstName: action.nativeEvent.text })
+    handleAdd = () => {
+
+        if (this.state.isSignUp) {
+            this.setState({ userId: this.props.users.length + 1 });
+            this.setState({ Role: 2 })
+            this.props.signUp(this.state);
+        }
+        else {
+            this.props.signUp(this.state);
+        }
     }
 
-    setEmail = (action) => {
-        debugger;
-        this.setState({ email: action.nativeEvent.text })
+    setStartDate = (date) => {
+        this.setState({ StartDate: date })
     }
 
-    setLastName = (action) => {
-        debugger;
-        this.setState({ LastName: action.nativeEvent.text })
-    }
-
-    setUserName = (action) => {
-        debugger;
-        this.setState({ userName: action.nativeEvent.text })
-    }
-
-    setPassword = (action) => {
-        debugger;
-        this.setState({ Password: action.nativeEvent.text })
-    }
-
-    setStartDate = (action) => {
-        debugger;
-        this.setState({ StartDate: action.nativeEvent.text })
-    }
-
-    setEndDate = (action) => {
-        debugger;
-        this.setState({ EndDate: action.nativeEvent.text })
-    }
-
-    setRole = (action) => {
-        debugger;
-        this.setState({ Role: action.nativeEvent.text })
+    setEndDate = (date) => {
+        this.setState({ EndDate: date })
     }
 
     render() {
         return (
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
-                    <Text style={styles.loginHeader}>User Name</Text>
-                    <TextInput style={styles.addInputStyle} onChange={value => this.setFirstName(value)} />
-                    <Text style={styles.loginHeader}>Email</Text>
-                    <TextInput style={styles.addInputStyle} onChange={() => { this.setEmail }} />
-                    <Text style={styles.loginHeader}>Password</Text>
-                    <TextInput style={styles.addInputStyle} onChange={() => { this.setPassword }} />
-                    <Text style={styles.loginHeader}>LastName</Text>
-                    <TextInput style={styles.addInputStyle} onChange={() => { this.setLastName }} />
-                    <Text style={styles.loginHeader}>StartDate</Text>
-                    <TextInput style={styles.addInputStyle} onChange={() => { this.setStartDate }} />
-                    <Text style={styles.loginHeader}>EndDate</Text>
-                    <TextInput style={styles.addInputStyle} onChange={() => { this.setEndDate }} />
                     {!this.state.isSignUp ?
-                        <View>
+                        <View style={styles.container}>
                             <Text style={styles.loginHeader}>First Name</Text>
-                            <TextInput style={styles.addInputStyle} onChange={() => { this.setFirstName }} />
+                            <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ FirstName: value })} />
                             <Text style={styles.loginHeader}>Role</Text>
-                            <TextInput style={styles.addInputStyle} onChange={() => { this.setRole }} /></View>
+                            <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ Role: value })} /></View>
                         : null
                     }
+                    <Text style={styles.loginHeader}>User Name</Text>
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ userName: value })} />
+                    <Text style={styles.loginHeader}>Email</Text>
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ email: value })} />
+                    <Text style={styles.loginHeader}>Password</Text>
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ Password: value })} />
+                    <Text style={styles.loginHeader}>LastName</Text>
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ LastName: value })} />
+                    <Text style={styles.loginHeader}>StartDate</Text>
+                    <DatePickerComponent style={styles.addInputStyle} setDate={this.setStartDate} />
+                    <Text style={styles.loginHeader}>EndDate</Text>
+                    <DatePickerComponent style={styles.addInputStyle} setDate={this.setEndDate} />
+
                 </ScrollView>
-                <AddUserButton isSignUp={this.state.isSignUp} user={this.state.user} />
+                <AddUserButton isSignUp={this.state.isSignUp} handleAdd={this.handleAdd} />
             </View>
         )
     }
 }
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         users: state.adminReducers.users
     };
 }
 
-export default connect(mapStateToProps)(AddUserComponent);
+const mapDispatchToProps = dispatch => ({
+    signUp: (user) => dispatch(signUpAction(user))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddUserComponent);

@@ -9,7 +9,8 @@ import {
 import {
     GET_USERS_SUCCESS,
     GET_USERS_FAILED,
-    ADD_USER_SUCCESS
+    SIGN_UP_SUCCESS,
+    SIGN_UP_FAILED
 } from '../actions/adminActions';
 
 import { takeLatest, put, all } from 'redux-saga/effects';
@@ -43,11 +44,15 @@ function* getUsers() {
     }
 }
 
-function* addUser(action) {
-    yield put({
-        type: ADD_USER_SUCCESS,
-        payload: action.payload
-    })
+function* signUp(action) {
+    debugger;
+    try {
+        yield axios.post(url1, { body: action.payload });
+        yield put({ type: SIGN_UP_SUCCESS });
+    }
+    catch (err) {
+        yield put({ type: SIGN_UP_FAILED, payload: err, error: true });
+    }
 }
 
 function* deleteUser(action) {
@@ -72,7 +77,9 @@ function* login(action) {
 function* actionWatcher() {
     yield takeLatest('GET_USERS', getUsers);
     yield takeLatest('LOGIN', login);
-    yield takeLatest('ADD_USER', addUser)
+    yield takeLatest('SIGN_UP', signUp);
+    yield takeLatest('DELETE_USER', deleteUser);
+    yield takeLatest('EDIT_USER', editUser);
 }
 
 export default function* rootSaga() {

@@ -6,7 +6,7 @@ class AddUserButton extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            labelAdd: "Add user",
+            labelAdd: "Add User",
             labelSignUp: "Sign UP",
             isSignUpButton: false,
             user: {}

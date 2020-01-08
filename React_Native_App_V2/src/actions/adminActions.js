@@ -1,12 +1,14 @@
-export const ADD_USER = 'ADD_USER';
-export const ADD_USER_SUCCESS = 'ADD_USER_SUCCESS';
+
+export const SIGN_UP = 'SIGN_UP';
+export const SIGN_UP_FAILED = 'SIGN_UP_FAILED';
+export const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
 export const GET_USERS = 'GET_USERS';
 export const GET_USERS_SUCCESS = 'GET_USERS_SUCCESS';
 export const GET_USERS_FAILED = 'GET_USERS_FAILED';
 
-export const addUser = (user) => {
+export const signUpAction = (user) => {
     return {
-        type: ADD_USER,
+        type: SIGN_UP,
         payload: user
     }
 }

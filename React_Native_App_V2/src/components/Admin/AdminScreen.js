@@ -72,7 +72,7 @@ class AdminScreen extends Component {
     }
 }
 
-mapStateToProps = (state) => {
+const mapStateToProps = (state) => {
     return {
         users: state.adminReducers.users
     };
