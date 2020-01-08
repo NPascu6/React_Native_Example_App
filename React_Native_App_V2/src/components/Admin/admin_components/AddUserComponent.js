@@ -14,14 +14,13 @@ class AddUserComponent extends Component {
         super(props);
 
         this.state = {
-            userId: "",
             userName: "",
             email: "",
             FirstName: "",
             LastName: "",
             StartDate: "",
             EndDate: "",
-            Role: "",
+            Role: "1",
             Password: "",
             isSignUp: false,
         }
@@ -31,15 +30,11 @@ class AddUserComponent extends Component {
         this.setState({
             users: this.props.users
         });
-
         this.props.isSignupComponent === true ? this.setState({ isSignUp: true }) : this.state.isSignUp = false;
     }
 
     handleAdd = () => {
-
         if (this.state.isSignUp) {
-            this.setState({ userId: this.props.users.length + 1 });
-            this.setState({ Role: 2 })
             this.props.signUp(this.state);
         }
         else {
@@ -89,7 +84,9 @@ class AddUserComponent extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.adminReducers.users
+        users: state.adminReducers.users,
+        addSuccess: state.adminReducers.addSuccess,
+        error: state.adminReducers.error
     };
 }
 

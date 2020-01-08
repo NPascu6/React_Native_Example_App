@@ -35,7 +35,6 @@ class UserScreen extends Component {
     }
 
     render() {
-
         return (
             <View>
                 <LogoutButton navigation={this.props.navigation} />

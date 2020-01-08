@@ -1,34 +1,34 @@
 import {
-    ADD_USER,
+    SIGN_UP_SUCCESS,
+    SIGN_UP_FAILED,
     GET_USERS_SUCCESS,
     GET_USERS_FAILED
 }
     from '../actions/adminActions';
 
 let newState = {
-    users: []
+    users: [],
+    error: '',
+    addSuccess: false,
 };
 
 const adminReducers = (state = newState, action) => {
     switch (action.type) {
-        case ADD_USER:
-            return {
-                ...state,
-                users: action.payload
-            }
+        case SIGN_UP_SUCCESS:
+            newState.addSuccess = true
+            return newState
+
+        case SIGN_UP_FAILED:
+            newState.error = action.payload
+            return newState
 
         case GET_USERS_SUCCESS:
-            debugger;
-            return {
-                ...state,
-                users: action.payload
-            }
+            newState.users = action.payload
+            return newState
 
         case GET_USERS_FAILED:
-            return {
-                ...state,
-                users: action.payload
-            }
+            newState.error = action.payload
+            return newState
 
         default:
             return state || newState;
