@@ -20,7 +20,7 @@ class AddUserComponent extends Component {
             LastName: "",
             StartDate: "",
             EndDate: "",
-            Role: "1",
+            Role: "2",
             Password: "",
             isSignUp: false,
         }

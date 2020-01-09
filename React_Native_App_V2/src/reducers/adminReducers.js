@@ -22,8 +22,12 @@ const adminReducers = (state = newState, action) => {
             }
 
         case SIGN_UP_FAILED:
-            newState.error = action.payload
-            return newState
+            debugger;
+            return {
+                ...state,
+                error: action.payload,
+                addSuccess: false
+            }
 
         case GET_USERS_SUCCESS:
             newState.users = action.payload

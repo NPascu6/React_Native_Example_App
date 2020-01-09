@@ -45,13 +45,19 @@ function* getUsers() {
 }
 
 function* signUp(action) {
-    debugger;
     try {
-        yield axios.post(url1, { body: action.payload });
-        yield put({ type: SIGN_UP_SUCCESS });
+        var response = yield axios.post(url1, { body: action.payload });
+        if (response.data.name !== 'RequestError') {
+            debugger;
+            yield put({ type: SIGN_UP_SUCCESS });
+        }
+        else {
+            debugger;
+            yield put({ type: SIGN_UP_FAILED, payload: response.data.originalError.info.message });
+        }
     }
     catch (err) {
-        yield put({ type: SIGN_UP_FAILED, payload: err});
+        yield put({ type: SIGN_UP_FAILED, payload: err });
     }
 }
 
