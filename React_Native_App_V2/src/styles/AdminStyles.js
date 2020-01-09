@@ -1,22 +1,28 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-    scrollView: {
-        marginHorizontal: 2,
-        marginVertical: 2
+    container:{
+        flex: 1,
+        padding: 10,
+        backgroundColor: 'black'
+    },
+    scrollView:{
+        borderWidth: 1,
+        borderBottomWidth: 0,
+        backgroundColor: 'gray',
+        maxHeight: 430
     },
     text: {
         fontWeight: "bold",
         color: "white",
         fontSize: 12,
-        padding: 3,
-
+        padding: 1,
     },
     view: {
         flex: 1,
         justifyContent: 'space-evenly',
         borderWidth: 5,
-        borderColor: 'white',
+        borderColor: 'black',
         borderRadius: 15,
         padding: 10,
         backgroundColor: 'gray'
@@ -46,9 +52,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     addInputStyle: {
-        borderBottomWidth: 1,
-        borderColor: 'white',
-        padding: 0
+        textAlign: 'center',
+        margin: 1,
+        fontWeight: 'bold',
+        fontSize: 16
     }
 });
 

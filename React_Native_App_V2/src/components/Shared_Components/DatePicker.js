@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Platform, Text } from 'react-native';
+import { View, Platform, Text, InputAccessoryView } from 'react-native';
 import DateTimePicker from '@react-native-community/datetimepicker';
+import styles from '../../styles/DatepickerStyles';
 
 export default class DatePickerComponent extends Component {
     state = {
@@ -41,7 +42,7 @@ export default class DatePickerComponent extends Component {
         return (
             <View>
                 <View>
-                    <Text onPress={this.datepicker}>{this.state.date.toDateString()}</Text>
+                    <Text style={styles.inputStyle} onPress={this.datepicker}>{this.state.date.toDateString()}</Text>
                 </View>
                 {show && <DateTimePicker value={date}
                     mode={mode}

@@ -61,7 +61,7 @@ class AddUserComponent extends Component {
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     {!this.state.isSignUp ?
-                        <View style={styles.container}>
+                        <View>
                             <Text style={styles.loginHeader}>First Name</Text>
                             <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ FirstName: value })} />
                             <Text style={styles.loginHeader}>Role</Text>
@@ -77,10 +77,9 @@ class AddUserComponent extends Component {
                     <Text style={styles.loginHeader}>LastName</Text>
                     <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ LastName: value })} />
                     <Text style={styles.loginHeader}>StartDate</Text>
-                    <DatePickerComponent style={styles.addInputStyle} setDate={this.setStartDate} />
+                    <DatePickerComponent setDate={this.setStartDate} />
                     <Text style={styles.loginHeader}>EndDate</Text>
-                    <DatePickerComponent style={styles.addInputStyle} setDate={this.setEndDate} />
-
+                    <DatePickerComponent setDate={this.setEndDate} />
                 </ScrollView>
                 <AddUserButton isSignUp={this.state.isSignUp} handleAdd={this.handleAdd} />
             </View>

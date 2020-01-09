@@ -56,12 +56,12 @@ class AdminScreen extends Component {
                                 onPress={this.addUser}>Add User
                          </Text>
                             :
-                            <View>
+                            <ScrollView>
                                 <Text style={styles.backButton}
                                     onPress={this.addUser}>Back To User List
                                     </Text>
                                 <AddUserComponent userList={users} />
-                            </View>
+                            </ScrollView>
                     }
                 </View>
                 {!this.state.addUser &&

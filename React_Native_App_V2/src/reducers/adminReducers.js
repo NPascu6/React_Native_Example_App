@@ -30,12 +30,16 @@ const adminReducers = (state = newState, action) => {
             }
 
         case GET_USERS_SUCCESS:
-            newState.users = action.payload
-            return newState
+            return {
+                ...state,
+                users: action.payload
+            }
 
         case GET_USERS_FAILED:
-            newState.error = action.payload
-            return newState
+            return{
+                ...state,
+                error: action.payload
+            }
 
         default:
             return state || newState;
