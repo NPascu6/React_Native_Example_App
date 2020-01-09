@@ -1,50 +1,55 @@
 import React, { Component } from 'react';
-import { View, StyleSheet } from 'react-native';
-import DatePicker from 'react-native-datepicker';
+import { View, Platform, Text } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 
 export default class DatePickerComponent extends Component {
-    constructor(props) {
-        super(props)
-        this.state = { date: new Date() }
+    state = {
+        date: new Date(),
+        mode: 'date',
+        show: false,
     }
 
-    setDate = (date) => {
-        this.setState({date});
+    setDate = (event, date) => {
+        date = date || this.state.date;
+
+        this.setState({
+            show: Platform.OS === 'ios' ? true : false,
+            date,
+        });
+
         this.props.setDate(date);
     }
 
+    show = mode => {
+        this.setState({
+            show: true,
+            mode,
+        });
+    }
+
+    datepicker = () => {
+        this.show('date');
+    }
+
+    timepicker = () => {
+        this.show('time');
+    }
+
     render() {
+        const { show, date, mode } = this.state;
+        debugger;
         return (
-            <View style={styles.container}>
-                <DatePicker
-                    style={{ width: 200 }}
-                    date={this.state.date}
-                    mode="date"
-                    placeholder="select date"
-                    format="YYYY-MM-DD"
-                    confirmBtnText="Confirm"
-                    cancelBtnText="Cancel"
-                    customStyles={{
-                        dateIcon: {
-                            position: 'absolute',
-                            left: 0,
-                            marginLeft: 0
-                        },
-                        dateInput: {
-                            marginLeft: 36
-                        }
-                    }}
-                    onDateChange={(date) => this.setDate(date)}
-                />
+            <View>
+                <View>
+                    <Text onPress={this.datepicker}>{this.state.date.toDateString()}</Text>
+                </View>
+                {show && <DateTimePicker value={date}
+                    mode={mode}
+                    is24Hour={true}
+                    display="default"
+                    onChange={this.setDate} />
+                }
             </View>
-        )
+        );
     }
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 16
-    }
-})
