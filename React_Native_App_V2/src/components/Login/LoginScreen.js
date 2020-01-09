@@ -44,6 +44,9 @@ class LoginScreen extends Component {
     }
 
     componentDidUpdate(previousProps) {
+        if(previousProps.errorMessage !== this.props.errorMessage){
+            this.setState({errorMessage: this.props.errorMessage})
+        }
         if (previousProps.loggedIn !== this.props.loggedIn && this.props.loggedIn === true) {
             this.props.navigation.navigate('Details');
         }
