@@ -9,7 +9,7 @@ import {
 let newState = {
     users: [],
     error: '',
-    addSuccess: false,
+    addSuccess: false
 };
 
 const adminReducers = (state = newState, action) => {
@@ -22,7 +22,6 @@ const adminReducers = (state = newState, action) => {
             }
 
         case SIGN_UP_FAILED:
-            debugger;
             return {
                 ...state,
                 error: action.payload,

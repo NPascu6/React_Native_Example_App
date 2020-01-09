@@ -10,10 +10,15 @@ class SignUpScreen extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            isSignupComponent: true
+            isSignupComponent: true,
+            userAdded: false
         }
     }
 
+    handleAdd = () => {
+        debugger;
+        this.setState({ userAdded: true })
+    }
 
     onSwipeRight = () => {
         this.props.navigation.navigate('Login')
@@ -36,7 +41,7 @@ class SignUpScreen extends Component {
                 <View>
                     <Text style={styles.loginHeader}>Sign Up screen</Text>
                 </View>
-                <AddUserComponent isSignupComponent={this.state.isSignupComponent} navigation={this.props.navigation} />
+                <AddUserComponent isSignupComponent={this.state.isSignupComponent} navigation={this.props.navigation} userAdded={this.state.userAdded} handleAdd={this.handleAdd} />
             </GestureRecognizer>
         )
     }

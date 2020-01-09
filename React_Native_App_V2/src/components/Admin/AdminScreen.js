@@ -15,12 +15,23 @@ class AdminScreen extends Component {
         super(props);
         this.state = {
             addUser: false,
-            users: []
+            users: [],
+            userAdded: false
         }
     }
 
-    addUser = () => {
-        this.setState({ addUser: !this.state.addUser })
+    addUser = (user) => {
+        this.setState({ addUser: !this.state.addUser });
+        if (user.userName) {
+            let exists = this.state.users.filter(userInList => userInList.userName == user.userName)
+            if (exists.length === 0) {
+                this.state.users.push(user)
+            }
+        }
+    }
+
+    handleAdd = () => {
+        this.setState({ userAdded: true })
     }
 
     componentDidMount() {
@@ -41,8 +52,8 @@ class AdminScreen extends Component {
                 <Text style={styles.text}>{item.email}</Text>
                 <Text style={styles.text}>{item.FirstName}</Text>
                 <Text style={styles.text}>{item.LastName}</Text>
-                <Text style={styles.text}>{item.StartDate ? item.StartDate.substr(0, item.StartDate.indexOf('T')) : null}</Text>
-                <Text style={styles.text}>{item.StartDate ? item.EndDate.substr(0, item.EndDate.indexOf('T')) : null}</Text>
+                <Text style={styles.text}>{item.StartDate.toString().substr(0, 10)}</Text>
+                <Text style={styles.text}>{item.EndDate.toString().substr(0, 10)}</Text>
             </View >
         });
 
@@ -60,7 +71,11 @@ class AdminScreen extends Component {
                                 <Text style={styles.backButton}
                                     onPress={this.addUser}>Back To User List
                                     </Text>
-                                <AddUserComponent userList={users} />
+                                <AddUserComponent
+                                    userList={this.state.users}
+                                    addUser={this.addUser}
+                                    handleAdd={this.handleAdd}
+                                    userAdded={this.state.userAdded} />
                             </ScrollView>
                     }
                 </View>
