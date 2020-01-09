@@ -1,11 +1,19 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import GestureRecognizer from 'react-native-swipe-gestures';
-
+import { connect } from 'react-redux';
 import AddUserComponent from '../Admin/admin_components/AddUserComponent';
 import styles from '../../styles/SignUpStyles';
 
 class SignUpScreen extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isSignupComponent: true
+        }
+    }
+
 
     onSwipeRight = () => {
         this.props.navigation.navigate('Login')
@@ -28,10 +36,17 @@ class SignUpScreen extends Component {
                 <View>
                     <Text style={styles.loginHeader}>Sign Up screen</Text>
                 </View>
-                <AddUserComponent isSignupComponent={true} />
+                <AddUserComponent isSignupComponent={this.state.isSignupComponent} navigation={this.props.navigation} />
             </GestureRecognizer>
         )
     }
 }
 
-export default SignUpScreen;
+const mapStateToProps = (state) => {
+    return {
+        addSuccess: state.adminReducers.addSuccess,
+        error: state.adminReducers.error
+    };
+}
+
+export default connect(mapStateToProps)(SignUpScreen);

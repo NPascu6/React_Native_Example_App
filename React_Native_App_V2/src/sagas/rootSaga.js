@@ -51,7 +51,7 @@ function* signUp(action) {
         yield put({ type: SIGN_UP_SUCCESS });
     }
     catch (err) {
-        yield put({ type: SIGN_UP_FAILED, payload: err, error: true });
+        yield put({ type: SIGN_UP_FAILED, payload: err});
     }
 }
 

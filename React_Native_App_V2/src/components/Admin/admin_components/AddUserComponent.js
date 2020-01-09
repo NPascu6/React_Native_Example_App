@@ -27,10 +27,15 @@ class AddUserComponent extends Component {
     }
 
     componentDidMount() {
-        this.setState({
-            users: this.props.users
-        });
+        debugger;
         this.props.isSignupComponent === true ? this.setState({ isSignUp: true }) : this.state.isSignUp = false;
+    }
+
+    componentDidUpdate(previousProps) {
+        debugger;
+        if (previousProps.addSuccess !== this.props.addSuccess && this.props.addSuccess === true) {
+            this.props.navigation.navigate('Login')
+        }
     }
 
     handleAdd = () => {
@@ -39,6 +44,7 @@ class AddUserComponent extends Component {
         }
         else {
             this.props.signUp(this.state);
+
         }
     }
 
@@ -84,9 +90,8 @@ class AddUserComponent extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        users: state.adminReducers.users,
-        addSuccess: state.adminReducers.addSuccess,
-        error: state.adminReducers.error
+        error: state.adminReducers.error,
+        addSuccess: state.adminReducers.addSuccess
     };
 }
 

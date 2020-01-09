@@ -15,8 +15,11 @@ let newState = {
 const adminReducers = (state = newState, action) => {
     switch (action.type) {
         case SIGN_UP_SUCCESS:
-            newState.addSuccess = true
-            return newState
+            return {
+                ...state,
+                error: '',
+                addSuccess: true
+            }
 
         case SIGN_UP_FAILED:
             newState.error = action.payload
