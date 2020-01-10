@@ -17,7 +17,7 @@ class DetailsScreen extends Component {
             <View>
                 <LogoutButton navigation={this.props.navigation} />
                 {
-                    this.props.role === "Admin" ?
+                    this.props.RoleName === "Admin" ?
                         <Text style={styles.buttonStyle} onPress={() => this.props.navigation.navigate("Admin")}>Go To Users List</Text> :
                         <Text style={styles.buttonStyle} onPress={() => this.props.navigation.navigate("User")}>Open First Actions</Text>
                 }
@@ -29,7 +29,7 @@ class DetailsScreen extends Component {
 
 mapStateToProps = (state) => {
     return {
-        role: state.authentificationReducers.role,
+        RoleName: state.authentificationReducers.RoleName,
         currentUser: state.authentificationReducers.currentUser
     };
 }

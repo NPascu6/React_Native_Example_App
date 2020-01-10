@@ -8,7 +8,7 @@ import {
 const newState = {
     loggedIn: false,
     errorMessage: '',
-    role: '',
+    RoleName: '',
     currentUser: {}
 };
 
@@ -18,7 +18,7 @@ const reducer = (state = newState, action) => {
             return {
                 ...state,
                 loggedIn: true,
-                role: 'Admin',
+                RoleName: 'Admin',
                 errorMessage: '',
                 currentUser: action.payload
             }
@@ -27,7 +27,7 @@ const reducer = (state = newState, action) => {
             return {
                 ...state,
                 loggedIn: true,
-                role: 'User',
+                RoleName: 'User',
                 errorMessage: '',
                 currentUser: action.payload
             }

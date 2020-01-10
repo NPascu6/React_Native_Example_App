@@ -8,8 +8,7 @@ class AddUserButton extends Component {
         this.state = {
             labelAdd: "Add User",
             labelSignUp: "Sign UP",
-            isSignUpButton: false,
-            user: {}
+            labelEdit: "Save"
         }
     }
 
@@ -18,7 +17,13 @@ class AddUserButton extends Component {
             <TouchableOpacity style={styles.buttonStyle}>
                 {
                     !this.props.isSignUp ?
-                        <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelAdd}</Text> :
+                        (
+                            !this.props.isEditButton ?
+                                <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelAdd}</Text>
+                                :
+                                <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelEdit}</Text>
+                        )
+                        :
                         <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelSignUp}</Text>
                 }
             </TouchableOpacity>

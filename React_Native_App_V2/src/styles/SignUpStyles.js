@@ -10,6 +10,10 @@ const styles = StyleSheet.create({
         backgroundColor: '#463d4a',
         fontWeight: 'bold',
         fontFamily: ''
+    },
+    container:{
+        height: 400,
+        padding: 20
     }
 });
 

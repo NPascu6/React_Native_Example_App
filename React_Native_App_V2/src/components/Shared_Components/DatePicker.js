@@ -6,8 +6,8 @@ import styles from '../../styles/DatepickerStyles';
 export default class DatePickerComponent extends Component {
     state = {
         date: new Date(),
-        mode: 'date',
-        show: false,
+        mode: 'calendar',
+        show: false
     }
 
     setDate = (event, date) => {
@@ -36,12 +36,18 @@ export default class DatePickerComponent extends Component {
         this.show('time');
     }
 
+    componentDidUpdate(previousProps) {
+        if (previousProps.valueFromProp !== this.props.valueFromProp) {
+            this.setState({ date: this.props.valueFromProp })
+        }
+    }
+
     render() {
         const { show, date, mode } = this.state;
         return (
             <View>
                 <View>
-                    <Text style={styles.inputStyle} onPress={this.datepicker}>{this.state.date.toDateString()}</Text>
+                    <Text style={styles.inputStyle} onPress={this.datepicker}>{this.state.date.toString().substr(0, 10)}</Text>
                 </View>
                 {show && <DateTimePicker value={date}
                     mode={mode}

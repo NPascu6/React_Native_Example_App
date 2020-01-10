@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text, ScrollView, Button } from 'react-native';
 //Redux
 import { connect } from 'react-redux';
 import { getUsers } from '../../actions/adminActions';
@@ -8,6 +8,8 @@ import { getUsers } from '../../actions/adminActions';
 import LogoutButton from '../Shared_Components/LogoutButton';
 import AddUserComponent from '../Admin/admin_components/AddUserComponent';
 import styles from '../../styles/AdminStyles';
+import EditUserComponent from './admin_components/EditUserComponent';
+import UserList from './admin_components/UserList';
 
 class AdminScreen extends Component {
 
@@ -16,7 +18,9 @@ class AdminScreen extends Component {
         this.state = {
             addUser: false,
             users: [],
-            userAdded: false
+            userAdded: false,
+            isEditMode: false,
+            editableUser: {}
         }
     }
 
@@ -28,6 +32,10 @@ class AdminScreen extends Component {
                 this.state.users.push(user)
             }
         }
+    }
+
+    enterEditMode = (user) => {
+        this.setState({isEditMode: true, editableUser: user});
     }
 
     handleAdd = () => {
@@ -46,17 +54,6 @@ class AdminScreen extends Component {
     }
 
     render() {
-        const users = this.state.users.map((item) => {
-            return <View style={styles.view} key={item.userId}>
-                <Text style={styles.text}>{item.userName}</Text>
-                <Text style={styles.text}>{item.email}</Text>
-                <Text style={styles.text}>{item.FirstName}</Text>
-                <Text style={styles.text}>{item.LastName}</Text>
-                <Text style={styles.text}>{item.StartDate.toString().substr(0, 10)}</Text>
-                <Text style={styles.text}>{item.EndDate.toString().substr(0, 10)}</Text>
-            </View >
-        });
-
         return (
             <View>
                 <LogoutButton navigation={this.props.navigation} />
@@ -79,8 +76,11 @@ class AdminScreen extends Component {
                             </ScrollView>
                     }
                 </View>
-                {!this.state.addUser &&
-                    <ScrollView style={styles.scrollView}>{users}</ScrollView>}
+                {!this.state.addUser && !this.state.isEditMode ?
+                    <ScrollView style={styles.scrollView}><UserList users={this.state.users} enterEditMode={this.enterEditMode} /></ScrollView> : null}
+                {
+                    this.state.isEditMode && <EditUserComponent editableUser={this.state.editableUser}/>
+                }
             </View>
         )
 

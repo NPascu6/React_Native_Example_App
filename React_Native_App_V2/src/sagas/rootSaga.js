@@ -10,7 +10,9 @@ import {
     GET_USERS_SUCCESS,
     GET_USERS_FAILED,
     SIGN_UP_SUCCESS,
-    SIGN_UP_FAILED
+    SIGN_UP_FAILED,
+    EDIT_USER_SUCCESS,
+    EDIT_USER_FAILED
 } from '../actions/adminActions';
 
 import { takeLatest, put, all } from 'redux-saga/effects';
@@ -65,6 +67,18 @@ function* deleteUser(action) {
 }
 
 function* editUser(action) {
+    try {
+        var response = yield axios.put(url1, { body: action.payload });
+        if (response.data.name !== 'RequestError') {
+            yield put({ type: EDIT_USER_SUCCESS });
+        }
+        else {
+            yield put({ type: EDIT_USER_FAILED, payload: response.data.originalError.info.message });
+        }
+    }
+    catch (err) {
+        yield put({ type: EDIT_USER_FAILED, payload: err });
+    }
 }
 
 function* login(action) {

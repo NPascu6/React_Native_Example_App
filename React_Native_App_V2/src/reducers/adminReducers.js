@@ -2,7 +2,9 @@ import {
     SIGN_UP_SUCCESS,
     SIGN_UP_FAILED,
     GET_USERS_SUCCESS,
-    GET_USERS_FAILED
+    GET_USERS_FAILED,
+    EDIT_USER_SUCCESS,
+    EDIT_USER_FAILED
 }
     from '../actions/adminActions';
 
@@ -10,7 +12,8 @@ let newState = {
     users: [],
     error: '',
     addSuccess: false,
-    isModalVisible: false
+    isModalVisible: false,
+    editSuccess: false
 };
 
 const adminReducers = (state = newState, action) => {
@@ -31,6 +34,20 @@ const adminReducers = (state = newState, action) => {
                 isModalVisible: true
             }
 
+        case EDIT_USER_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                editSuccess: true,
+            }
+
+        case EDIT_USER_FAILED:
+            return {
+                ...state,
+                error: action.payload,
+                editSuccess: false,
+            }
+
         case GET_USERS_SUCCESS:
             return {
                 ...state,
@@ -38,7 +55,7 @@ const adminReducers = (state = newState, action) => {
             }
 
         case GET_USERS_FAILED:
-            return{
+            return {
                 ...state,
                 error: action.payload
             }

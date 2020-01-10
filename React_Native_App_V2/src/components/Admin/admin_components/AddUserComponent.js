@@ -21,9 +21,10 @@ class AddUserComponent extends Component {
             LastName: "",
             StartDate: "",
             EndDate: "",
-            Role: "2",
-            Password: "",
-            isSignUp: false
+            RoleName: "2",
+            password: "",
+            isSignUp: false,
+            isEdit: false
         }
     }
 
@@ -66,7 +67,7 @@ class AddUserComponent extends Component {
                             <Text style={styles.loginHeader}>First Name</Text>
                             <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ FirstName: value })} />
                             <Text style={styles.loginHeader}>Role</Text>
-                            <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ Role: value })} /></View>
+                            <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ RoleName: value })} /></View>
                         : null
                     }
                     <Text style={styles.loginHeader}>User Name</Text>
@@ -74,7 +75,7 @@ class AddUserComponent extends Component {
                     <Text style={styles.loginHeader}>Email</Text>
                     <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ email: value })} />
                     <Text style={styles.loginHeader}>Password</Text>
-                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ Password: value })} />
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ password: value })} />
                     <Text style={styles.loginHeader}>LastName</Text>
                     <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ LastName: value })} />
                     <Text style={styles.loginHeader}>StartDate</Text>
@@ -82,7 +83,7 @@ class AddUserComponent extends Component {
                     <Text style={styles.loginHeader}>EndDate</Text>
                     <DatePickerComponent setDate={this.setEndDate} />
                 </ScrollView>
-                <AddUserButton isSignUp={this.state.isSignUp} handleAdd={this.handleAdd} />
+                <AddUserButton isSignUp={this.state.isSignUp} handleAdd={this.handleAdd}/>
             </View>
         )
     }
