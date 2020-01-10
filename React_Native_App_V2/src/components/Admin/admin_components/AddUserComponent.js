@@ -32,14 +32,6 @@ class AddUserComponent extends Component {
         this.props.isSignupComponent === true ? this.setState({ isSignUp: true }) : this.state.isSignUp = false;
     }
 
-    componentDidUpdate(previousProps) {
-        if (this.props.addSuccess !== previousProps.addSuccess && this.state.isSignUp === true) {
-        }
-        else if (this.props.addSuccess !== previousProps.addSuccess && this.state.isSignUp === false) {
-            this.props.addUser(this.state)
-        }
-    }
-
     handleAdd = () => {
         if (this.state.isSignUp) {
             this.props.signUp(this.state);

@@ -45,9 +45,7 @@ class EditUserComponent extends Component {
     }
 
     render() {
-        debugger;
         return (
-            
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.loginHeader}>First Name</Text>
@@ -68,7 +66,7 @@ class EditUserComponent extends Component {
                     <DatePickerComponent setDate={this.setEndDate} valueFromProp={this.state.editableUser.EndDate} />
                 </ScrollView>
                 <AddUserButton isEditButton={this.state.isEdit} handleEdit={this.handleEdit} />
-                <Button style={styles.buttonStyle} onPress={()=>{this.setState({isEdit: false})}} title="Cancel"></Button>
+                <Button style={styles.buttonStyle} onPress={this.props.cancel} title="Cancel"></Button>
             </View>
         )
     }
