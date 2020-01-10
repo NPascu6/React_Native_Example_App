@@ -9,7 +9,8 @@ import {
 let newState = {
     users: [],
     error: '',
-    addSuccess: false
+    addSuccess: false,
+    isModalVisible: false
 };
 
 const adminReducers = (state = newState, action) => {
@@ -18,14 +19,16 @@ const adminReducers = (state = newState, action) => {
             return {
                 ...state,
                 error: '',
-                addSuccess: true
+                addSuccess: true,
+                isModalVisible: true
             }
 
         case SIGN_UP_FAILED:
             return {
                 ...state,
                 error: action.payload,
-                addSuccess: false
+                addSuccess: false,
+                isModalVisible: true
             }
 
         case GET_USERS_SUCCESS:

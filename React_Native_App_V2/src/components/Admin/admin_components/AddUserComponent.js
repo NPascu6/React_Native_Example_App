@@ -23,21 +23,18 @@ class AddUserComponent extends Component {
             EndDate: "",
             Role: "2",
             Password: "",
-            isSignUp: false,
-            userAdded: true
+            isSignUp: false
         }
     }
 
     componentDidMount() {
         this.props.isSignupComponent === true ? this.setState({ isSignUp: true }) : this.state.isSignUp = false;
-        this.setState({ userAdded: this.props.userAdded })
     }
 
-    componentDidUpdate() {
-        if (this.props.addSuccess === true && this.state.isSignUp === true) {
-            this.props.navigation.navigate('Login');
+    componentDidUpdate(previousProps) {
+        if (this.props.addSuccess !== previousProps.addSuccess && this.state.isSignUp === true) {
         }
-        else if (this.props.addSuccess === true && this.state.isSignUp === false) {
+        else if (this.props.addSuccess !== previousProps.addSuccess && this.state.isSignUp === false) {
             this.props.addUser(this.state)
         }
     }

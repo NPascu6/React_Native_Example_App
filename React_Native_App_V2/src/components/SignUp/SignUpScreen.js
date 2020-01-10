@@ -4,6 +4,7 @@ import GestureRecognizer from 'react-native-swipe-gestures';
 import { connect } from 'react-redux';
 import AddUserComponent from '../Admin/admin_components/AddUserComponent';
 import styles from '../../styles/SignUpStyles';
+import { ConfirmationPopUp } from '../Shared_Components/ConfirmationPopUp';
 
 class SignUpScreen extends Component {
 
@@ -11,13 +12,23 @@ class SignUpScreen extends Component {
         super(props);
         this.state = {
             isSignupComponent: true,
-            userAdded: false
+            userAdded: false,
+            isModalVisible: false,
+            error: ''
         }
     }
 
-    handleAdd = () => {
+    componentDidMount() {
+        this.setState({ isModalVisible: false })
+        this.setState({ userAdded: false })
+    }
+
+    componentDidUpdate(previousProps) {
         debugger;
-        this.setState({ userAdded: true })
+        if (this.props.isModalVisible === true && previousProps.error !== this.props.error) {
+            this.setState({ isModalVisible: this.props.isModalVisible });
+            this.setState({ error: this.props.error });
+        }
     }
 
     onSwipeRight = () => {
@@ -41,7 +52,8 @@ class SignUpScreen extends Component {
                 <View>
                     <Text style={styles.loginHeader}>Sign Up screen</Text>
                 </View>
-                <AddUserComponent isSignupComponent={this.state.isSignupComponent} navigation={this.props.navigation} userAdded={this.state.userAdded} handleAdd={this.handleAdd} />
+                <AddUserComponent isSignupComponent={this.state.isSignupComponent} navigation={this.props.navigation} userAdded={this.state.userAdded} />
+                {this.state.isModalVisible ? <ConfirmationPopUp error={this.state.error} /> : null}
             </GestureRecognizer>
         )
     }
@@ -50,7 +62,8 @@ class SignUpScreen extends Component {
 const mapStateToProps = (state) => {
     return {
         addSuccess: state.adminReducers.addSuccess,
-        error: state.adminReducers.error
+        error: state.adminReducers.error,
+        isModalVisible: state.adminReducers.isModalVisible
     };
 }
 
