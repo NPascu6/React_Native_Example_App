@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, ScrollView, Button } from 'react-native';
 //Redux
 import { connect } from 'react-redux';
-import { getUsers } from '../../actions/adminActions';
+import { getUsers, deleteUserAction } from '../../actions/adminActions';
 
 //Components
 import LogoutButton from '../Shared_Components/LogoutButton';
@@ -54,8 +54,13 @@ class AdminScreen extends Component {
         }
     }
 
-    cancel = () =>{
-        this.setState({isEditMode: false})
+    cancel = () => {
+        this.setState({ isEditMode: false })
+    }
+
+    delete = (user) =>{
+        debugger;
+        this.props.delete(user)
     }
 
     render() {
@@ -85,10 +90,19 @@ class AdminScreen extends Component {
                 }
                 {
                     !this.state.addUser && !this.state.isEditMode ?
-                        <ScrollView style={styles.scrollView}><UserList users={this.state.users} enterEditMode={this.enterEditMode} /></ScrollView> : null
+                        <ScrollView style={styles.scrollView}>
+                            <UserList
+                                users={this.state.users}
+                                enterEditMode={this.enterEditMode}
+                                delete={this.delete} />
+                        </ScrollView>
+                        : null
                 }
                 {
-                    this.state.isEditMode && <EditUserComponent editableUser={this.state.editableUser} cancel={this.cancel}/>
+                    this.state.isEditMode &&
+                    <EditUserComponent
+                        editableUser={this.state.editableUser}
+                        cancel={this.cancel} />
                 }
             </View>
         )
@@ -102,7 +116,8 @@ const mapStateToProps = (state) => {
     };
 }
 const mapDispatchToProps = dispatch => ({
-    getUsers: () => dispatch(getUsers())
+    getUsers: () => dispatch(getUsers()),
+    delete: (userId) => dispatch(deleteUserAction(userId))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AdminScreen);

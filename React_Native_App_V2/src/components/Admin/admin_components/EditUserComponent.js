@@ -37,10 +37,33 @@ class EditUserComponent extends Component {
     }
 
     componentDidMount() {
-        this.setState({ editableUser: this.props.editableUser, isEdit: true })
+        this.setState({
+            editableUser: this.props.editableUser,
+            isEdit: true,
+            userId: this.props.editableUser.userId,
+            userName: this.props.editableUser.userName,
+            email: this.props.editableUser.email,
+            FirstName: this.props.editableUser.FirstName,
+            LastName: this.props.editableUser.LastName,
+            StartDate: this.props.editableUser.StartDate,
+            EndDate: this.props.editableUser.EndDate,
+            RoleName: this.props.editableUser.RoleName,
+            password: this.props.editableUser.password,
+        })
     }
 
-    handleEdit = (user) => {
+    handleEdit = () => {
+        let user = {
+            userId: this.state.userId,
+            userName: this.state.userName,
+            email: this.state.email,
+            FirstName: this.state.FirstName,
+            LastName: this.state.LastName,
+            StartDate: this.state.StartDate,
+            EndDate: this.state.EndDate,
+            RoleName: this.state.RoleName,
+            password: this.state.password,
+        }
         this.props.editUser(user)
     }
 
@@ -49,21 +72,21 @@ class EditUserComponent extends Component {
             <View style={styles.container}>
                 <ScrollView style={styles.scrollView}>
                     <Text style={styles.loginHeader}>First Name</Text>
-                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ FirstName: value })} value={this.state.editableUser.FirstName} />
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ FirstName: value })} value={this.state.FirstName} />
                     <Text style={styles.loginHeader}>Role</Text>
-                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ RoleName: value })} value={this.state.editableUser.RoleName} />
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ RoleName: value })} value={this.state.RoleName} />
                     <Text style={styles.loginHeader}>User Name</Text>
-                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ userName: value })} value={this.state.editableUser.userName} />
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ userName: value })} value={this.state.userName} />
                     <Text style={styles.loginHeader}>Email</Text>
-                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ email: value })} value={this.state.editableUser.email} />
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ email: value })} value={this.state.email} />
                     <Text style={styles.loginHeader}>Password</Text>
-                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ password: value })} value={this.state.editableUser.password} />
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ password: value })} value={this.state.password} />
                     <Text style={styles.loginHeader}>LastName</Text>
-                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ LastName: value })} value={this.state.editableUser.LastName} />
+                    <TextInput style={styles.addInputStyle} onChangeText={value => this.setState({ LastName: value })} value={this.state.LastName} />
                     <Text style={styles.loginHeader}>StartDate</Text>
-                    <DatePickerComponent setDate={this.setStartDate} valueFromProp={this.state.editableUser.StartDate} />
+                    <DatePickerComponent setDate={this.setStartDate} valueFromProp={this.state.StartDate} />
                     <Text style={styles.loginHeader}>EndDate</Text>
-                    <DatePickerComponent setDate={this.setEndDate} valueFromProp={this.state.editableUser.EndDate} />
+                    <DatePickerComponent setDate={this.setEndDate} valueFromProp={this.state.EndDate} />
                 </ScrollView>
                 <AddUserButton isEditButton={this.state.isEdit} handleEdit={this.handleEdit} />
                 <Button style={styles.buttonStyle} onPress={this.props.cancel} title="Cancel"></Button>

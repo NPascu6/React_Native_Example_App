@@ -21,7 +21,7 @@ class AddUserButton extends Component {
                             !this.props.isEditButton ?
                                 <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelAdd}</Text>
                                 :
-                                <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelEdit}</Text>
+                                <Text onPress={this.props.handleEdit} style={styles.textStyle}>{this.state.labelEdit}</Text>
                         )
                         :
                         <Text onPress={this.props.handleAdd} style={styles.textStyle}>{this.state.labelSignUp}</Text>

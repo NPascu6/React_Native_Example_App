@@ -11,8 +11,12 @@ class UserList extends Component {
         }
     }
 
-    edit = (user) =>{
+    edit = (user) => {
         this.props.enterEditMode(user);
+    }
+
+    delete = (userId) =>{
+        this.props.delete(userId);
     }
 
     componentDidMount() {
@@ -30,6 +34,7 @@ class UserList extends Component {
         return (
             this.state.users.map((item) =>
                 <View style={styles.view} key={item.userId}>
+                    <Button title='Edit' onPress={() => this.edit(item)} />
                     <Text style={styles.text}>{item.userName}</Text>
                     <Text style={styles.text}>{item.email}</Text>
                     <Text style={styles.text}>{item.FirstName}</Text>
@@ -37,7 +42,7 @@ class UserList extends Component {
                     <Text style={styles.text}>{item.LastName}</Text>
                     <Text style={styles.text}>{item.StartDate.toString().substr(0, 10)}</Text>
                     <Text style={styles.text}>{item.EndDate.toString().substr(0, 10)}</Text>
-                    <Button title='Edit' onPress={() => this.edit(item)}/>
+                    <Button title='Delete' onPress={() => this.delete(item)} />
                 </View >
             ))
     }

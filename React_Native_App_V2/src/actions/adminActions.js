@@ -8,6 +8,9 @@ export const GET_USERS_FAILED = 'GET_USERS_FAILED';
 export const EDIT_USER = 'EDIT_USER';
 export const EDIT_USER_SUCCESS = 'EDIT_USER_SUCCESS';
 export const EDIT_USER_FAILED = 'EDIT_USER_FAILED';
+export const DELETE_USER = 'DELETE_USER';
+export const DELETE_USER_SUCCESS = 'DELETE_USER_SUCCESS';
+export const DELETE_USER_FAILED = 'DELETE_USER_FAILED';
 
 export const signUpAction = (user) => {
     return {
@@ -26,5 +29,12 @@ export const editUserAction = (user) => {
     return {
         type: EDIT_USER,
         payload: user
+    }
+}
+
+export const deleteUserAction = (userId) => {
+    return {
+        type: DELETE_USER,
+        payload: userId
     }
 }

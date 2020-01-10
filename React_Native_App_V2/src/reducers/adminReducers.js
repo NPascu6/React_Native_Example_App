@@ -4,7 +4,9 @@ import {
     GET_USERS_SUCCESS,
     GET_USERS_FAILED,
     EDIT_USER_SUCCESS,
-    EDIT_USER_FAILED
+    EDIT_USER_FAILED,
+    DELETE_USER_SUCCESS,
+    DELETE_USER_FAILED
 }
     from '../actions/adminActions';
 
@@ -13,7 +15,8 @@ let newState = {
     error: '',
     addSuccess: false,
     isModalVisible: false,
-    editSuccess: false
+    editSuccess: false,
+    deleteSucces: false
 };
 
 const adminReducers = (state = newState, action) => {
@@ -46,6 +49,20 @@ const adminReducers = (state = newState, action) => {
                 ...state,
                 error: action.payload,
                 editSuccess: false,
+            }
+
+        case DELETE_USER_SUCCESS:
+            return {
+                ...state,
+                error: '',
+                deleteSucces: true,
+            }
+
+        case DELETE_USER_FAILED:
+            return {
+                ...state,
+                error: action.payload,
+                deleteSucces: false,
             }
 
         case GET_USERS_SUCCESS:
